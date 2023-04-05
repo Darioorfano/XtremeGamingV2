@@ -1,0 +1,65 @@
+.logo {
+    font-size: 2em;
+    font-weight: bolder;
+    color: #f8f9fa;
+  }
+  .bg-header{
+   background-color:rgb(40 39 39 / 95%);  }
+  .bg-navbar{
+    background-color:#1a1919;
+  }
+  .boton{
+    position: absolute;
+    right: 2em;
+    top:6.5em;
+    height: 40px;
+  }
+  .navbar-toggler{
+    border: 2px solid rgb(59, 59, 59);
+  }
+  .navbar-toggler:focus{
+    border:none;
+    box-shadow: 0 0 0 0;
+  
+  }
+  
+  #rgb-bar{
+  background:
+  linear-gradient(45deg,rgba(255,0,0,1) 0%,rgba(255,0,255,1) 18%,rgba(0,0,255,1) 
+  30%,rgba(0,240,255,1) 45%,rgba(0,255,0,1) 63%,rgba(255,255,0,1)
+  80%,rgba(255,120,0,1) 90%,rgba(255,0,0,1) 100% );
+  background-size: 400% 400%;
+  -webkit-animation: rgbBg 20s linear infinite;
+  height: 3px;
+  position: relative;  
+}
+
+@keyframes rgbBg {
+  0% {
+      background-position: 400% 0%
+  }
+
+  100% {
+      background-position: 0% 400%
+  }
+}
+
+@-moz-keyframes rgbBg {
+  0% {
+      background-position: 400% 0%
+  }
+
+  100% {
+      background-position: 0% 400%
+  }
+}
+
+@-webkit-keyframes rgbBg {
+  0% {
+      background-position: 400% 0%
+  }
+
+  100% {
+      background-position: 0% 400%
+  }
+}

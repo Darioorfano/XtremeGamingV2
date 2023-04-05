@@ -4,17 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { ProductosViewComponent } from './views/productos-view/productos-view.component';
 
+
 const routes : Routes = [
-  {path:'',component: HomeViewComponent}]
+  {path:'',component:HomeViewComponent},
+  {path:'productos',component:ProductosViewComponent}
+  ]
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot([
-      {path:'', component:HomeViewComponent},
-      {path:'productos', component:ProductosViewComponent}
-    ])
+    RouterModule.forRoot(routes)
   ],
   exports:[RouterModule]
 })
