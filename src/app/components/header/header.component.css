@@ -4,16 +4,13 @@
     color: #f8f9fa;
   }
   .bg-header{
-   background-color:rgb(40 39 39 / 95%);  }
+ /* background-color: rgb(50 49 49 / 95%);*/
+ background-color:#1a1919;
+}
   .bg-navbar{
-    background-color:#1a1919;
+  background-color:#1a1919;
   }
-  .boton{
-    position: absolute;
-    right: 2em;
-    top:6.5em;
-    height: 40px;
-  }
+
   .navbar-toggler{
     border: 2px solid rgb(59, 59, 59);
   }
@@ -23,6 +20,12 @@
   
   }
   
+/*Iconos*/
+.bi-person-circle,.bi-cart-fill{
+  font-size: 2em !important;
+}
+
+/*Barra RGB*/
   #rgb-bar{
   background:
   linear-gradient(45deg,rgba(255,0,0,1) 0%,rgba(255,0,255,1) 18%,rgba(0,0,255,1) 
@@ -33,6 +36,7 @@
   height: 3px;
   position: relative;  
 }
+
 
 @keyframes rgbBg {
   0% {

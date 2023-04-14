@@ -1,3 +1,38 @@
-.bg-footer{
-background-color: rgb(40 39 39 / 95%);
+.bg-footer {
+  background-color: #1a1919;
+}
+.bi-twitter,
+.bi-youtube,
+.bi-twitch,
+.bi-linkedin,
+.bi-instagram,
+.bi-facebook {
+  font-size: 1.5em !important;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.bi-twitter, .bi-youtube, .bi-facebook, .bi-instagram, .bi-twitch,.bi-linkedin {
+  height: 50px;
+  border-radius: 50%;
+  padding: 0.3em 0.5em 0 0.5em !important;
+}
+
+.bi-twitter:hover {
+  background-color: #1d9bf0;
+}
+.bi-youtube:hover {
+  background-color: #f00;
+}
+.bi-instagram:hover {
+  background-color: #eb00e7;
+}
+.bi-linkedin:hover {
+  background-color: #0073b1;
+}
+.bi-facebook:hover {
+  background-color: #1877f2;
+}
+.bi-twitch:hover {
+  background-color: #9246ff;
 }
