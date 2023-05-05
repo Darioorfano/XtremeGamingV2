@@ -1,11 +1,14 @@
-<div class="rainbow"></div>
-<div class="card m-auto mt-1" style="width: 15rem;">
+<div class="card m-auto mt-1" style="width: 18rem;">
   <div class="card-body text-center">
     <img src="https://www.fullh4rd.com.ar/img/productos/Pics_Prod/auriculares-corsair-gaming-hs35-green-0.jpg"
       class="card-img-top img-fluid" alt="...">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
     </p>
-    <a type="" href="#" class="btn btn-danger">Go somewhere</a>
+    <a type="" href="#" *ngIf="!habilitarVerMas" class="btn btn-danger botonComprar">COMPRAR</a>
+    <div class="container d-flex justify-content-around mt-2" *ngIf='habilitarVerMas'>
+        <a type="" href="#" class="btn btn-danger botonComprar">COMPRAR</a>
+        <a type="" href="#" class="btn btn-danger botonVerMas">VER MÁS</a>
+    </div>
   </div>
 </div>

@@ -23,6 +23,7 @@
 /*Iconos*/
 .bi-person-circle,.bi-cart-fill{
   font-size: 2em !important;
+  cursor: pointer;
 }
 
 /*Barra RGB*/

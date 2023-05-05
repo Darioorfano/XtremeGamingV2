@@ -3,12 +3,17 @@ body {
   background-color: rgb(56, 54, 54);
 }
 
+input.ng-invalid.ng-touched{
+/*border:2px solid #8d121e !important;*/
+border:2px solid red !important;
+
+}
 .owl-prev {
   position: absolute;
   background-color: #dc3545 !important;
   color: white !important;
   left: -5%;
-  width: 70px;
+  width: 80px;
   border-radius: 50% !important;
   top: 35%;
   font-size: 3em !important;
@@ -23,7 +28,7 @@ body {
   background-color: #dc3545 !important;
   color: white !important;
   right: -5%;
-  width: 70px;
+  width: 80px;
   border-radius: 50% !important;
   top: 35%;
   font-size: 3em !important;

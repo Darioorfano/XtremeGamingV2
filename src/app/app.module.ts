@@ -8,6 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductosViewComponent } from './views/productos-view/productos-view.component';
 import { CardComponent } from './components/card/card.component';
 import { ProductsCarouselComponent } from './components/products-carousel/products-carousel.component';
+import { LoginViewComponent } from './views/login-view/login-view.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -17,13 +24,44 @@ import { ProductsCarouselComponent } from './components/products-carousel/produc
     FooterComponent,
     ProductosViewComponent,
     CardComponent,
-    ProductsCarouselComponent
+    ProductsCarouselComponent,
+    LoginViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    CarouselModule,
+    BrowserAnimationsModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '105460275370-u9c1mgk3roojh8no0e57rhh1rtdrk0ij.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('608405014604675')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
