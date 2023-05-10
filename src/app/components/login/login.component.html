@@ -39,12 +39,12 @@
       <div class="overlay-panel overlay-left">
         <h1>Bienvenido de vuelta !</h1>
         <p>Para mantenerse conectado con nosotros, inicie sesión con su información personal</p>
-        <button class="ghost" (click)="rightPanelClass = false;" id="signIn">Iniciar sesión</button>
+        <button class="ghost" (click)="rightPanelClass = false; resetarFormulario()" id="signIn">Iniciar sesión</button>
       </div>
       <div class="overlay-panel overlay-right">
         <h1>Bienvenido!</h1>
         <p>Ingresa tus datos personales y comienza tu trayecto con nosotros</p>
-        <button class="ghost"  (click)="rightPanelClass = true;" id="signUp">Registrarse</button>
+        <button class="ghost"  (click)="rightPanelClass = true; resetarFormulario()" id="signUp">Registrarse</button>
       </div>
     </div>
   </div>
