@@ -15,6 +15,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import { CardProductsComponent } from './components/card-products/card-products.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { LeftMenuComponent } from './components/left-menu/left-menu.component';
+
+
 
 @NgModule({
   declarations: [
@@ -27,6 +33,8 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, Facebo
     ProductsCarouselComponent,
     LoginViewComponent,
     LoginComponent,
+    CardProductsComponent,
+    LeftMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,11 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, Facebo
     CarouselModule,
     BrowserAnimationsModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    MatCardModule,
+    MatExpansionModule
+  
+    
   ],
   providers: [
     {

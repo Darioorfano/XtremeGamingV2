@@ -1,11 +1,10 @@
 import {
   FacebookLoginProvider,
-  GoogleLoginProvider,
   SocialAuthService,
   SocialUser,
 } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import {FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +15,8 @@ export class LoginComponent implements OnInit {
   user?: SocialUser;
   loggedIn: boolean | undefined;
   emailInvalido: boolean = false;
+  rightPanelClass : boolean = false;
+  emailValidator  = new RegExp(/[A-Z0-9._+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
 
   loginForm = this.fb.group({
     email: ['', Validators.required],
@@ -24,12 +25,12 @@ export class LoginComponent implements OnInit {
 
   registerForm = this.fb.group({
     nombre: ['', Validators.required],
-    emailRegistro: ['', Validators.required],
+    emailRegistro: ['', Validators.required,Validators.pattern(this.emailValidator)],
     passwordRegistro: ['', Validators.required],
   });
 
   constructor(
-    private fb: UntypedFormBuilder,
+    public fb: FormBuilder,
     private authService: SocialAuthService
   ) {}
 
@@ -41,10 +42,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
-
-loginWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  resetarFormulario(){
+    this.registerForm.clearValidators()
+    this.registerForm.reset();
   }
 
   signInWithFB(): void {
@@ -52,9 +52,5 @@ loginWithGoogle(): void {
   }
   signOut(): any {
     this.authService.signOut();
-  }
-
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 }

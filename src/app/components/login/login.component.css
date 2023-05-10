@@ -46,8 +46,24 @@ button {
 	transition: transform 80ms ease-in;
 }
 
+button:hover{
+	background-color: #dc3545;
+	transition: none;
+	color: #FFFFFF;
+}
+
 button:active {
 	transform: scale(0.95);
+}
+button:disabled{
+	background-color: #dc3545;
+	color: #FFFFFF;
+	border: 1px solid #dc3545;
+}
+
+.registrar:active,.ingresar:active{
+	background-color: #dc3545;
+	color: #FFFFFF;
 }
 
 button:focus {
@@ -85,7 +101,7 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 900px;
 	max-width: 100%;
 	min-height: 600px;
 }

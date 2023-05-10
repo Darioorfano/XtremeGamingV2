@@ -9,16 +9,11 @@ import { Router } from '@angular/router';
 
 export class CardComponent implements OnInit {
 
-  habilitarVerMas :boolean = false;
-
-  constructor(private router :Router) {
+  
+  constructor() {
    }
 
-  ngOnInit() {
-    this.habilitarVerMas;
-    this.router.url == '/productos' ? this.habilitarVerMas = true : this.habilitarVerMas;
-
-   }
+  ngOnInit() {}
 
 }
 

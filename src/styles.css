@@ -3,11 +3,6 @@ body {
   background-color: rgb(56, 54, 54);
 }
 
-input.ng-invalid.ng-touched{
-/*border:2px solid #8d121e !important;*/
-border:2px solid red !important;
-
-}
 .owl-prev {
   position: absolute;
   background-color: #dc3545 !important;
@@ -42,7 +37,8 @@ border:2px solid red !important;
     background-color: #dc3545;
 }
 
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
 
-.disabled {
-  background-color: red !important;
 }
+
