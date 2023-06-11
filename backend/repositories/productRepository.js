@@ -5,7 +5,14 @@ const listProduct = async () => {
     const db = await dbPromise;
     const products = db.collection('products');
 
-    const listOfProducts = await products.find();
+    const options = {
+        // Include only the `title` and `imdb` fields in each returned document
+        projection: {publicationDate:0,specification:0}
+      };
+
+
+    const listOfProducts = await products.find({},options);
+
 
     return listOfProducts.toArray();
 
