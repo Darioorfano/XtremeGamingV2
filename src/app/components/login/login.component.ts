@@ -3,7 +3,7 @@ import {
   SocialAuthService,
   SocialUser,
 } from '@abacritt/angularx-social-login';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -17,40 +17,32 @@ export class LoginComponent implements OnInit {
   emailInvalido: boolean = false;
   rightPanelClass : boolean = false;
   emailValidator  = new RegExp(/[A-Z0-9._+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
-
+  
+  //Expresion regular que verifica que contenga al menos un numero, una mayuscula, caracter especial
+  passwordValidator =new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/gm)
+  
   loginForm = this.fb.group({
     email: ['', [Validators.required]],
     password: ['',[Validators.required]],
   });
 
   registerForm = this.fb.group({
-    nombre: ['',[Validators.required]],
+    nombre: ['',[Validators.required,Validators.min(3)]],
     emailRegistro: ['',[Validators.required,Validators.pattern(this.emailValidator)]],
-    passwordRegistro: ['',[Validators.required]],
+    passwordRegistro: ['',[Validators.required,Validators.pattern(this.passwordValidator)]],
   });
 
   constructor(
     public fb: FormBuilder,
-    private authService: SocialAuthService
   ) {}
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(this.user);
-    });
+ 
   }
-
+  
   resetarFormulario(){
     this.registerForm.clearValidators()
     this.registerForm.reset();
   }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
-  signOut(): any {
-    this.authService.signOut();
-  }
 }

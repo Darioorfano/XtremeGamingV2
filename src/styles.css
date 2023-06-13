@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  background-color: rgb(56, 54, 54);
-}
 
+body{
+  background-color: #eee;
+}
 .owl-prev {
   position: absolute;
   background-color: #dc3545 !important;
@@ -37,8 +37,30 @@ body {
     background-color: #dc3545;
 }
 
-input.ng-invalid.ng-touched{
+input.ng-invalid.ng-touched,textarea.ng-invalid.ng-touched{
   border: 1px solid red;
-
 }
 
+.mat-expansion-panel{
+  box-shadow:none !important;
+}
+.mat-accordion .mat-expansion-panel:last-of-type{
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.mat-accordion .mat-expansion-panel:first-of-type{
+  border-top-right-radius:0 !important;
+  border-top-left-radius:0 !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar{
+  background-color:#dc3545 !important;
+}
+.mdc-tab__text-label{
+color:grey !important;
+}
+.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline{
+  border-color:#dc3545;
+}
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label{
+  color:white !important;
+}

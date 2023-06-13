@@ -1,0 +1,178 @@
+<main class="container d-flex flex-wrap pb-5 pt-5">
+  <div class="col-lg-7 mt-2">
+    <img
+      src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_35719_Notebook_Gamer_Acer_Nitro_5_15.6__FHD_Core_i5_11400H_8GB_256GB_SSD_NVMe_GTX_1650_W11_Home_GAME_PASS_ULTIMATE_1_MONTH_e3d5a472-grn.jpg"
+      alt="..." />
+  </div>
+  <div class="col-lg-5 mt-3">
+    <h4>Auriculares Razer</h4>
+    <div class="container pt-3 pb-3">
+      <mat-chip class="pildora" role="option">ID:345612</mat-chip>
+      <mat-chip class="pildora mx-2" role="option">FABRICANTE: RAZER</mat-chip>
+    </div>
+    <div class="container border-top border-secondary">
+      <div class="col-lg-6">
+        <h6 class="mt-4">PRECIO ESPECIAL</h6>
+        <h4 class="mt-2">$50000</h4>
+      </div>
+    </div>
+    <div class="container border-top border-bottom border-secondary containerInfo">
+      <p class="text-success mt-4 ml-5">
+        <i class="fas fa-shield-alt" style="color: #31832f"></i> Garantia - 12
+        meses
+      </p>
+      <p class="text-success">
+        <i class="fas fa-check" style="color: #31832f"></i> Stock disponible
+      </p>
+      <p class="text-success mb-3">
+        <i class="fas fa-truck" style="color: #31832f"></i> Envios a todo el
+        pais.
+      </p>
+    </div>
+    <button class="btn btn-danger my-4">AGREGAR AL CARRITO</button>
+  </div>
+  <section class="container-fluid mt-4">
+    <mat-tab-group>
+      <mat-tab label="ESPECIFICACIONES">
+        <div class="container mt-2" >
+          <div class="row">
+            <div class="col-lg-6">
+              <h6 class="border-secondary mb-3 border-bottom mt-4">
+                CARACTERISTICAS GENERALES
+              </h6>
+              <table class="table table-striped">
+                <tbody>
+                  <tr *ngFor="let characteristicsProduct of characteristicsProducts">
+                    <th scope="row">{{ characteristicsProduct.detalle }}</th>
+                    <td>{{ characteristicsProduct.color }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-lg-6" >
+              <h6 class="border-secondary mb-3 border-bottom mt-4">
+                RENDIMIENTO
+              </h6>
+              <table class="table table-striped">
+                <tbody>
+                  <tr *ngFor="let detailsProduct of detailsProducts">
+                    <th scope="row">{{ detailsProduct.detalle }}</th>
+                    <td>{{ detailsProduct.color }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="PREGUNTAS" class="border-bottom border-secondary">
+        <div class="consulta-form mt-2">
+          <h2 class="pt-2 pb-2">¿Tenés preguntas sobre este producto?</h2>
+          <p>Escribi tu pregunta</p>
+          <form class="formulario-consulta" (submit)="enviarConsulta()">
+            <div class="form-group">
+              <textarea name="consulta" rows="4" placeholder="Escribe tu consulta aquí" [(ngModel)]="nuevaConsulta" class="form-control"></textarea>
+            </div>
+            <button class="btn btn-danger enviar-consulta" type="submit">Enviar consulta</button>
+          </form>
+        </div>
+      
+        <div class="hilo-consultas">
+          <h5 class="text-danger" *ngIf="consultas.length > 0">Otros usuarios consultaron:</h5>
+          <div class="consulta" *ngFor="let consulta of consultas">
+            <div class="consulta-info">
+              <div class="container-fluid usuario-info">
+                <img src="{{ user?.photoUrl }}" class="mt-2" alt="Foto de perfil del usuario">
+                <div>
+                  <p class="consulta-texto pt-2">{{ consulta.texto }}</p>
+                  <div class="hora-usuario">
+                    <p class="consulta-fecha text-end mr-2">{{ consulta.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="respuestas">
+              <div class="respuesta" *ngFor="let respuesta of consulta.respuestas">
+                <div class="container-fluid admin-info">
+                  <img class="admin-photo" src="../../../assets/adminPhoto.png" alt="">
+                  <div class="respuesta-info">
+                    <p class="respuesta-texto respuesta-mensaje">{{ respuesta.texto }}</p>
+                    <p class="respuesta-fecha">{{ respuesta.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-link text-end" *ngIf="!isAdmin" (click)="responderConsulta(consulta)">Responder</button>
+            <div *ngIf="!isAdmin && consultaSeleccionada === consulta">
+              <div *ngIf="mostrarFormularioRespuesta" class="formulario-respuesta mt-2">
+                <textarea name="respuesta" rows="4" placeholder="Escribe tu respuesta aquí" [(ngModel)]="nuevaRespuesta" minlength="20" class="form-control"></textarea>
+                <button class="btn btn-danger mt-3 enviar-respuesta" (click)="enviarRespuesta()">Enviar respuesta</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      
+      <mat-tab label="RESEÑAS">
+        <div class="reviews">
+          <div class="review" *ngFor="let resenia of resenias">
+            <div class="review-header">
+              <span class="review-rating" [attr.data-rating]="resenia.comentario"></span>
+              <span class="review-name">{{ resenia.nombre }}</span>
+            </div>
+            <p class="review-comment">{{ resenia.comentario }}</p>
+          </div>
+        </div>
+
+        
+
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Realizar Reseña</button>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dejanos tu reseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="reseniaForm" (ngSubmit)="agregarResenia()">
+                  <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" formControlName="nombre"  name="name" >
+                  </div>
+                  <div class="form-group">
+                    <label for="rating">Calificación:</label>
+                    <select id="rating" formControlName="calificacion" name="rating">
+                      <option value="5">5 Estrellas</option>
+                      <option value="4">4 Estrellas</option>
+                      <option value="3">3 Estrellas</option>
+                      <option value="2">2 Estrellas</option>
+                      <option value="1">1 Estrella</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="comment">Comentario:</label>
+                    <textarea id="comment" formControlName="comentario" name="comment" ></textarea>
+                  </div> 
+                  <button  class="btn btn-danger d-flex m-auto" [disabled]="reseniaForm.invalid" type="submit">Enviar Reseña</button>      
+                </form>
+              </div>
+              <div class="modal-footer">
+               
+              </div>
+            </div>
+          </div> 
+        </div>
+
+
+
+       
+               
+          
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+</main>
