@@ -1,3 +1,4 @@
+
 .logo {
     font-size: 2em;
     font-weight: bolder;
@@ -10,15 +11,6 @@
   .bg-navbar{
   background-color:#1a1919;
   }
-
-  .navbar-toggler{
-    border: 2px solid rgb(59, 59, 59);
-  }
-  .navbar-toggler:focus{
-    border:none;
-    box-shadow: 0 0 0 0;
-  
-  }
   
 /*Iconos*/
 .bi-person-circle,.bi-cart-fill{
@@ -26,8 +18,27 @@
   cursor: pointer;
 }
 
-/*Barra RGB*/
-  #rgb-bar{
+
+.logout,.person{
+  color:#dc3545;
+}
+.navbar-toggler-icon{
+  filter: invert(100%);
+  }
+.botonMenu{
+  border:1px solid #dc3545;
+  outline: none;
+}
+.botonMenu:focus{
+  border:1px solid #dc3545;
+  box-shadow: none;
+}
+
+
+
+@media screen and (min-width:991px){
+ /*Barra RGB*/
+ #rgb-bar{
   background:
   linear-gradient(45deg,rgba(255,0,0,1) 0%,rgba(255,0,255,1) 18%,rgba(0,0,255,1) 
   30%,rgba(0,240,255,1) 45%,rgba(0,255,0,1) 63%,rgba(255,255,0,1)
@@ -38,6 +49,7 @@
   position: relative;  
 }
 
+}
 
 @keyframes rgbBg {
   0% {
