@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+  background-color: #eee;
+}
+.owl-prev {
+  position: absolute;
+  background-color: #dc3545 !important;
+  color: white !important;
+  left: -5%;
+  width: 80px;
+  border-radius: 50% !important;
+  top: 35%;
+  font-size: 3em !important;
+}
+.owl-prev span {
+  position: relative;
+  top: -0.1em;
+}
+
+.owl-next {
+  position: absolute;
+  background-color: #dc3545 !important;
+  color: white !important;
+  right: -5%;
+  width: 80px;
+  border-radius: 50% !important;
+  top: 35%;
+  font-size: 3em !important;
+}
+
+.owl-next span {
+  position: relative;
+  top: -0.1em;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots span{
+    background-color: #dc3545;
+}
+
+input.ng-invalid.ng-touched,textarea.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+.mat-expansion-panel{
+  box-shadow:none !important;
+}
+.mat-accordion .mat-expansion-panel:last-of-type{
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.mat-accordion .mat-expansion-panel:first-of-type{
+  border-top-right-radius:0 !important;
+  border-top-left-radius:0 !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar{
+  background-color:#dc3545 !important;
+}
+.mdc-tab__text-label{
+color:grey !important;
+}
+.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline{
+  border-color:#dc3545;
+}
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label{
+  color:white !important;
+}
+.mat-mdc-card-header-text{
+  margin: auto;
+}
+@media  screen and (min-width:991px) {
+  .mat-mdc-card-header-text{
+    margin: 0;
+  }
+}
