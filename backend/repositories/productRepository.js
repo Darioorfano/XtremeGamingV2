@@ -2,23 +2,6 @@
 //const ObjectId = require('mongodb').ObjectId;
 const {db} = require('../config/firebase');
 
-// const listProduct = async () => {
-//     const db = await dbPromise;
-//     const products = db.collection('products');
-
-//     const options = {
-//         // Include only the `title` and `imdb` fields in each returned document
-//         projection: {publicationDate:0,specification:0}
-//       };
-
-
-//     const listOfProducts = await products.find({},options);
-
-
-//     return listOfProducts.toArray();
-
-
-// }
 
 const listProduct = async () => {
     const products = db.collection('products');
@@ -26,9 +9,11 @@ const listProduct = async () => {
     const listProduct = []
 
     snapshot.forEach(doc => {
-      listProduct.push(doc);
-      console.log("listado de productos",listProduct)
+      console.log(doc.id)
+      let product = { id: doc.id, ...doc.data()}
+      listProduct.push(product);
     });
+    
     return listProduct;
 }
 
