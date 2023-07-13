@@ -18,21 +18,17 @@ const listProduct = async () => {
 }
 
 
-// const getProductById = async (productId) => {
+const getProductById = async (productId) => {
+  
+    const products = db.collection('products').doc(productId);
+    const product = await products.get();
+    return product.exists ? {id: productId, ...product.data()} : null;
     
-// //     const db = await dbPromise;
-// //     const products = db.collection('products');
-
-// //     const query = { _id: new ObjectId(productId) };
-
-// //     const product = await products.findOne(query);
-// //     return product;
-    
-// // }
+}
 
 
 module.exports = {
   //  listProduct,
-   // getProductById,
-    listProduct,
+  getProductById,
+  listProduct,
 };

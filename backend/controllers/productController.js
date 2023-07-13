@@ -20,22 +20,11 @@ const getProductById = async (req, res) => {
         
         res.json(product);
     } catch (error) {
-        console.log(error)
         res.status(500).json({ error: `Error al obtener el producto id: ${id}` });
     }
 };
-const getProduct = async (req,res) => {
-    try{
-        const product = await productService.listProduct();
-        res.json(product);
-    }catch(error){
-        console.error('Error al obtener el producto:',error)
-        res.status(500).json('Error al obtener el producto');
-    }
-}
 
 module.exports = {
     getAllProducts,
-    getProductById,
-    getProduct
+    getProductById
 }
