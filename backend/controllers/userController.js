@@ -1,23 +1,26 @@
 const userService = require("../services/userService");
 
-const login = async(req,res) =>{
+const login = async (req,res) =>{
     try{
-        const user = await userService.login();
-        res.json(user);
+        const {email, password } = req.body;
+        const result = await userService.login(email, password);
+        res.status(result.code).json({ mensaje: result.mensaje, usuario: result.user });
     }catch(error){
-        res.status(401).json({ error: 'Usuario u contraseña incorrecta' });
+        res.status(500).json(error);
     }
 }
 
 const register = async(req,res) =>{
     try{
-        const user = await userService.register();
-        res.json(user);
+        const {email, password, name } = req.body;
+        const result = await userService.register(email, password, name);
+        res.status(result.code).json({ mensaje: result.mensaje });
     }catch(error){
-        res.status(401).json({ error: 'Usuario ya registrado' });
+        res.status(500).json(error);
     }
 }
 
 module.exports = {
-    login
+    login,
+    register
 }
