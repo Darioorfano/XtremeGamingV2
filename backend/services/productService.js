@@ -1,21 +1,8 @@
 const productRepository = require('../repositories/productRepository');
 
 const listProduct = async() => {
-    const product = await productRepository.listProduct();
-    const listProducts = []
-    product.forEach(producto => {
-        const {_fieldsProto} = producto
-        const product = {
-            nombre: _fieldsProto.nombre.stringValue,
-            descripcion:_fieldsProto.descripcion.stringValue,
-            precio: Number(_fieldsProto.precio.integerValue),
-            imagen: _fieldsProto.imagen.stringValue
-        }
-        console.log("Product services",product)
-        listProducts.push(product);
-    });
-   
-    return listProducts;
+    const products = await productRepository.listProduct();
+    return products;
 }
 
 const getProductById = async (productId) => {

@@ -1,53 +1,28 @@
-//const dbPromise = require('../config/db');
-//const ObjectId = require('mongodb').ObjectId;
 const {db} = require('../config/firebase');
+const { collection, doc, getDocs, getDoc } = require("firebase/firestore"); 
 
-// const listProduct = async () => {
-//     const db = await dbPromise;
-//     const products = db.collection('products');
-
-//     const options = {
-//         // Include only the `title` and `imdb` fields in each returned document
-//         projection: {publicationDate:0,specification:0}
-//       };
-
-
-//     const listOfProducts = await products.find({},options);
-
-
-//     return listOfProducts.toArray();
-
-
-// }
 
 const listProduct = async () => {
-    const products = db.collection('products');
-    const snapshot = await products.get();
+    const querySnapshot = await getDocs(collection(db, "products"));
     const listProduct = []
 
-    snapshot.forEach(doc => {
-      listProduct.push(doc);
-      console.log("listado de productos",listProduct)
+    querySnapshot.forEach(doc => {
+      let product = { id: doc.id, ...doc.data()}
+      listProduct.push(product);
     });
+    
     return listProduct;
 }
 
 
-// const getProductById = async (productId) => {
+const getProductById = async (productId) => {
+    const docRef = doc(db, "products", productId);
+    const product = await getDoc(docRef);
+    return product.exists ? {id: productId, ...product.data()} : null;
     
-// //     const db = await dbPromise;
-// //     const products = db.collection('products');
-
-// //     const query = { _id: new ObjectId(productId) };
-
-// //     const product = await products.findOne(query);
-// //     return product;
-    
-// // }
-
+}
 
 module.exports = {
-  //  listProduct,
-   // getProductById,
-    listProduct,
+  getProductById,
+  listProduct,
 };

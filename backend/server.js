@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
 const productRoutes = require('./routes/productRoutes');
 app.use('/api/products', productRoutes);
 
-// const userRoutes = require('./routes/userRoutes')
-// app.use('/api/users',userRoutes);
+const userRoutes = require('./routes/userRoutes')
+app.use('/api/users',userRoutes);
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
