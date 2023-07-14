@@ -1,15 +1,12 @@
-//const dbPromise = require('../config/db');
-//const ObjectId = require('mongodb').ObjectId;
 const {db} = require('../config/firebase');
+const { collection, doc, getDocs, getDoc } = require("firebase/firestore"); 
 
 
 const listProduct = async () => {
-    const products = db.collection('products');
-    const snapshot = await products.get();
+    const querySnapshot = await getDocs(collection(db, "products"));
     const listProduct = []
 
-    snapshot.forEach(doc => {
-      console.log(doc.id)
+    querySnapshot.forEach(doc => {
       let product = { id: doc.id, ...doc.data()}
       listProduct.push(product);
     });
@@ -19,16 +16,13 @@ const listProduct = async () => {
 
 
 const getProductById = async (productId) => {
-  
-    const products = db.collection('products').doc(productId);
-    const product = await products.get();
+    const docRef = doc(db, "products", productId);
+    const product = await getDoc(docRef);
     return product.exists ? {id: productId, ...product.data()} : null;
     
 }
 
-
 module.exports = {
-  //  listProduct,
   getProductById,
   listProduct,
 };
