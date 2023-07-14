@@ -25,6 +25,7 @@ import { CardProductsComponent } from './components/card-products/card-products.
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -48,6 +49,7 @@ import { MatButtonModule} from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     CarouselModule,
     BrowserAnimationsModule,
