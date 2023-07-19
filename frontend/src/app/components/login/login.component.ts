@@ -1,10 +1,10 @@
-import {
-  FacebookLoginProvider,
-  SocialAuthService,
-  SocialUser,
-} from '@abacritt/angularx-social-login';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DatosFormLogin } from 'src/app/models/datosFormLogin';
+import { DatosFormRegister } from 'src/app/models/datosFormRegister';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,8 @@ import {FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  user?: SocialUser;
   loggedIn: boolean | undefined;
+  Swal: any;
   emailInvalido: boolean = false;
   rightPanelClass : boolean = false;
   emailValidator  = new RegExp(/[A-Z0-9._+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
@@ -34,12 +34,82 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
+    private userServices:UserService,
+    public router : Router
   ) {}
 
   ngOnInit() {
  
   }
+
+  registrarUsuario(){
+    const {nombre,emailRegistro,passwordRegistro} = this.registerForm.controls
+      const user:DatosFormRegister = {
+        name: nombre.value,
+        email: emailRegistro.value,
+        password:passwordRegistro.value,
+    }
+      
+ return this.userServices.registrarUsuario(user).subscribe((response) =>{
+       Swal.fire("Registro exitoso",response.mensaje + ', por favor verifique su casilla de email para confirmar la cuenta','success').then((result)=>{
+        if(result.isConfirmed){
+          this.rightPanelClass = false;
+          this.resetarFormulario();
+        }
+       });
+ },
+ (error) =>{
+  if(error.status == 500){
+    Swal.fire("Error al registrar usuario",error.error.mensaje,'error');
+  }else{
+    Swal.fire(
+      "Se ha producido un error, por favor intente mas tarde",
+      "error"
+    );
+  }
+ });
+
+}
+
+
   
+  validarUsuario(){
+    const {email,password} = this.loginForm.controls
+    const user:DatosFormLogin = {
+      email:email.value,
+      password:password.value
+    }
+
+    return this.userServices.loguearUsuario(user).subscribe((response) =>{
+      if(response.usuario.emailVerified ){
+        const usuarioString = JSON.stringify(response.usuario);
+      this.userServices.cargarDatosDeSesion(usuarioString);
+
+      Swal.fire("Inicio de sesión exitoso","Aceptar para continuar",'success')
+     .then((result) => {
+      if(result.isConfirmed){
+        this.router.navigateByUrl('/');
+      }
+     })
+      }else{
+      Swal.fire("Error al iniciar sesión","Por favor confirme su cuenta",'error');
+      }
+      
+    },
+    (error) => {
+      if(error.status == 401){
+        Swal.fire("Error al iniciar sesión",error.error.mensaje,'error');
+      }else{
+        Swal.fire(
+          "Se ha producido un error, por favor intente mas tarde",
+          "error"
+        );
+      }
+    }
+    );
+  }
+
+
   resetarFormulario(){
     this.registerForm.clearValidators()
     this.registerForm.reset();

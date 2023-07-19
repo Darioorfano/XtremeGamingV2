@@ -68,8 +68,8 @@ export class ProductDetailsComponent {
   ngOnInit() {
     this.obtenerUsuario();
   }
-  async obtenerUsuario() {
-    this.user = await this.userServices.obtenerUsuarioDeLaSesion();
+ obtenerUsuario() {
+  //  this.user = await this.userServices.obtenerUsuarioDeLaSesion();
     this.loggedIn = this.user != null;
   }
 

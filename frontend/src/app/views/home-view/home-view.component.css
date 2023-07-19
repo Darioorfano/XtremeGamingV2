@@ -1,0 +1,7 @@
+.slides{
+    height: 600px;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    width: 6rem;
+    height: 500px;
+}
