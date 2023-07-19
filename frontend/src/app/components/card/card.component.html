@@ -2,10 +2,12 @@
   <div class="card-body text-center">
     <img src={{product.imagen}}
       class="card-img-top img-fluid" alt="...">
-    <h5 class="card-title">{{product.nombre}}</h5>
-    <p class="card-text">{{product.descripcion}}</p>
-    <p class="card-text">{{product.precio}}</p>
+    <h5 class="card-title">{{product.nombreProducto}}</h5>
+    <h4 class="card-text text-danger">${{product.precio}}</h4>
 
-    <a type="" href="#" class="btn btn-danger botonComprar">COMPRAR</a>
+    <button class="btn botonUno" (click)="agregarCarrito(product)">Agregar al carrito</button>
+
+    <a [routerLink]="'/producto/' + product.id" class="btn btn-danger">COMPRAR</a>
+
   </div>
 </div>

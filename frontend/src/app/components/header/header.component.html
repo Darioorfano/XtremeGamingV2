@@ -35,8 +35,16 @@
           <button mat-menu-item (click)="borrarSesion()"><mat-icon aria-hidden="false" class="logout" aria-label="Example home icon" fontIcon="logout"></mat-icon>
             Cerrar sesión</button>
         </mat-menu>
-      
-        <a routerLink="/cart"> <i class="bi-cart-fill mx-4 text-light d-none d-lg-inline"></i></a>
+        <a routerLink="/carrito" mat-icon-button >
+          <mat-icon
+            [matBadge]="carrito.cantidadItems"
+            [matBadgeHidden]="!carrito.cantidadItems"
+            matBadgeColor="warn"
+            [ngStyle]="{'color':'white'}"
+            >shopping_cart</mat-icon
+          >
+        </a>
+
       </div>
       <div id="rgb-bar"></div>
       <button class="navbar-toggler align-self-start botonMenu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +57,7 @@
             <a class="nav-link text-light" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="#">Tienda</a>
+            <a class="nav-link text-light" [routerLink]="'/productos'">Productos</a>
           </li>
   
           <li class="nav-item" *ngIf="loggedIn; else notLogged">

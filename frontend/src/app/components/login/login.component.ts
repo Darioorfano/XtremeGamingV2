@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
         const usuarioString = JSON.stringify(response.usuario);
       this.userServices.cargarDatosDeSesion(usuarioString);
 
-      Swal.fire("Inicio de sesión exitoso","Aceptar para continuar",'success')
+      Swal.fire("Inicio de sesión exitoso","Acepte para continuar",'success')
      .then((result) => {
       if(result.isConfirmed){
         this.router.navigateByUrl('/');

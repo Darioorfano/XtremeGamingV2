@@ -1,7 +1,8 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Carrito } from 'src/app/models/carrito';
 import { Usuario } from 'src/app/models/usuario';
+import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-header',
@@ -9,14 +10,18 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements  OnInit {
-
-  usuario: Usuario | null = null ;
+carrito! :Carrito
+usuario: Usuario | null = null ;
 loggedIn: boolean = false;
-  
-constructor(private userServices:UserService,private router:Router){ }
+
+constructor(private userServices:UserService,
+  private router:Router,
+  public cartServices : CartService,
+  ){ }
 
 ngOnInit() {
 this.obtenerUsuario();
+this.carrito=this.cartServices.getCartFromLocalStorage();
 }
 
 obtenerUsuario(){

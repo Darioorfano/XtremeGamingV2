@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -6,16 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 
-export class CardComponent implements OnInit {
-@Input () product: any;
+export class CardComponent{
+@Input () product!: Product ;
   
-  constructor() {
+  constructor(
+    public cartService:CartService) {
+    
   }
 
-  ngOnInit() {
-    console.log(this.product) 
-
+  agregarCarrito(product : Product){
+    console.log("producto",product)
+    this.cartService.addToCart(product);
   }
+ 
 
 }
 
