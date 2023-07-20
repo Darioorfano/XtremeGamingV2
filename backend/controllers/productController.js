@@ -24,7 +24,24 @@ const getProductById = async (req, res) => {
     }
 };
 
+const getProductsByName = async (req,res) => {
+    const {name} =req.params;
+    try{
+        const productsName = await productService.getProductsByName(name)
+        
+    if(productsName.length == 0){
+        return res.status(404).json({error:`No se encontraron resultados`})
+    }
+    res.json(productsName)
+    } catch (error){
+        console.log(error)
+        res.status(500).json({ error: `Error al obtener el producto: ${name}` });
+
+    }
+}
+
 module.exports = {
     getAllProducts,
-    getProductById
+    getProductById,
+    getProductsByName
 }

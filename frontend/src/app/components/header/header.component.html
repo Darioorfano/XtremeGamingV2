@@ -8,10 +8,25 @@
       </div>
     
       <div class="col-12 col-lg-4 pt-4">
-        <form class="d-flex mb-4" role="search">
-          <input class="form-control input-busqueda mr-sm-2 w-75  m-auto" type="search" placeholder="Buscar producto..."
-          aria-label="Search">
-          <button class="btn boton-buscar d-none d-lg-flex bg-danger text-light" type="submit">Buscar</button>
+        <form class="d-flex mb-4" role="search" autocomplete="off">
+          <div class="position-relative d-flex w-100">
+            <input class="form-control me-2" (keyup)="obtenerProducto()" [(ngModel)]="nombreDelProducto" type="search"
+              name="nombreDelProducto" placeholder="Buscar" aria-label="Search">
+      
+            <div class="autocomplete-results flex-grow-0" *ngIf="productosBuscados.length > 0">
+              <div class="products d-flex flex-column">
+                <div class="cartas" *ngFor="let product of productosBuscados">
+                  <div class="product-item" routerLink="/product/{{product.id}}">
+                    <img [src]="product.imagen" alt="Producto" class="product-image">
+                    <div class="product-details">
+                      <p class="product-name">{{ product.nombreProducto }}</p>
+                      <p class="product-price text-start">${{ product.precio }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
   
@@ -25,7 +40,7 @@
          </ng-container>
         
          <ng-container *ngIf="loggedIn">
-        <button mat-button [matMenuTriggerFor]="menu" class="text-light d-none d-lg-inline">{{usuario?.displayName}}
+        <button mat-button [matMenuTriggerFor]="menu" id="usuarioButton" class="text-light d-none d-lg-inline">{{usuario?.displayName}}
           <span><mat-icon aria-hidden="false" class="text-light" aria-label="Example home icon" fontIcon="arrow_drop_down"></mat-icon></span>
         </button>
       </ng-container>
