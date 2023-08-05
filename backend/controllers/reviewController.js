@@ -11,9 +11,9 @@ const getReviewsFromProduct = async (req, res) => {
 };
 
 const postReview = async (req, res) => {
-    const { name, rating, comment, idUser, idProducto, imageUrl } = req.body;
+    const { nombre, calificacion, comentario, idUsuario, idProducto, imagenUrl } = req.body;
     try {
-        const result = await reviewService.postReview(name, rating, comment, idUser, idProducto, imageUrl);
+        const result = await reviewService.postReview(nombre, calificacion, comentario, idUsuario, idProducto, imagenUrl);
         console.log(result)
         res.status(result.code).json({ mensaje: result.mensaje });
     } catch (error) {
