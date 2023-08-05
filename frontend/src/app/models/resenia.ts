@@ -3,6 +3,5 @@ export interface Resenia{
     nombre: string;
     calificacion: number;
     comentario: string;
-    imagenUrl:string | null,
     idProducto:string | null
 }

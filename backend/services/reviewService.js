@@ -1,8 +1,8 @@
 const reviewRepository = require('../repositories/reviewRepository');
 
 
-const postReview = async(name, rating, comment, idUser, idProducto, imageUrl) => {
-    const result = await reviewRepository.postReview(name, rating, comment, idUser, idProducto, imageUrl);
+const postReview = async(name, rating, comment, idUser, idProducto) => {
+    const result = await reviewRepository.postReview(name, rating, comment, idUser, idProducto);
     return result;
 }
 
