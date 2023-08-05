@@ -9,7 +9,11 @@ const getReviewsFromProduct = async (idProduct) => {
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(doc => {
-            let review = { id: doc.id, ...doc.data()}
+            let review = { 
+                name:doc.data().name,
+                rating: doc.data().rating,
+                comment: doc.data().comment
+            }
             listReviews.push(review);
         });
     
