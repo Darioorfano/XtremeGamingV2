@@ -103,29 +103,23 @@ export class ProductDetailsComponent {
       nombre: nombre.value as string,
       calificacion: Number(calificacion.value),
       comentario: comentario.value as string,
-      imagenUrl: usuario.photoUrl,
       idProducto: this.producto.id
     };
 
    this.reviewServices.addReview(newReview).subscribe((response) =>{
-    Swal.fire("Inicio de sesión exitoso",response,'success')
+    Swal.fire("La reseña ha sido publicada con exito",response,'success')
    },
    (error) => {
     if(error.status == 500){
-      Swal.fire("Error al registrar usuario",error.error.mensaje,'error');
+      Swal.fire("Error al realizar la reseña",error.error.mensaje,'error');
     }else{
       Swal.fire(
         "Se ha producido un error, por favor intente mas tarde",
         "error"
       );
     }
-
-
    }
-
-   
    )
-   
   }
 
 
