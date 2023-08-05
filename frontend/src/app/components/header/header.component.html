@@ -7,12 +7,19 @@
         </div>
       </div>
     
+
       <div class="col-12 col-lg-4 pt-4">
         <form class="d-flex mb-4" role="search" autocomplete="off">
           <div class="position-relative d-flex w-100">
-            <input class="form-control me-2" (keyup)="obtenerProducto()" [(ngModel)]="nombreDelProducto" type="search"
+            <input class="form-control me-2" (keyup)="obtenerProductos()" [(ngModel)]="nombreDelProducto" type="search"
               name="nombreDelProducto" placeholder="Buscar" aria-label="Search">
       
+            <div class="autocomplete-results flex-grow-0" *ngIf="nombreDelProducto.length >= 3 && productosBuscados.length === 0">
+              <div class="products d-flex flex-column">
+                <h6 class="text-center">El producto que busca no existe</h6>
+              </div>
+            </div>
+            
             <div class="autocomplete-results flex-grow-0" *ngIf="productosBuscados.length > 0">
               <div class="products d-flex flex-column">
                 <div class="cartas" *ngFor="let product of productosBuscados">
@@ -29,7 +36,7 @@
           </div>
         </form>
       </div>
-  
+      
       <div class="col-lg-1"></div>
       <div class="col-lg-3">
   
@@ -61,11 +68,11 @@
         </a>
 
       </div>
-      <div id="rgb-bar"></div>
+      
       <button class="navbar-toggler align-self-start botonMenu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon "></span>
       </button>
-     
+ 
       <div class="collapse navbar-collapse align-self-start col-lg-12 nav-menu" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex m-auto">
           <li class="nav-item">
@@ -86,38 +93,11 @@
         </ng-template>
 
           <li class="nav-item">
-            <a class="nav-link text-light d-lg-none" href="#">Mi carrito</a>
+            <a class="nav-link text-light d-lg-none" href="/carrito">Mi carrito</a>
           </li>
         </ul>
+        
       </div>
     </div>
   </nav>
- 
- 
-  <!-- La barra que oculta hasta que se resuelva porque no se funciona x encima del nav
-  <div id="rgb-bar"></div>
-  -->
-  <!-- <div class="row bg-dark">
-    <div id="rgb-bar"></div>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars text-light"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item mx-2">
-              <a class="nav-link text-light mt-3 mb-2 " routerLink="/productos" routerLinkActive="router-link-active" >Productos</a>
-            </li>
-            <li class="nav-item mt-lg-3 mx-2 ">
-              <a class="nav-link text-light mb-2 " routerLink="/ayuda" routerLinkActive="router-link-active" >Ayuda</a>
-            </li>
-            <li class="nav-item mt-lg-3 mx-2">
-              <a class="nav-link text-light" routerLink="/contacto" routerLinkActive="router-link-active" >Contacto</a>
-            </li>
-          </ul>       
-        </div>
-      </div>
-    </nav>
-  </div> -->
 </header>
