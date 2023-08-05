@@ -7,7 +7,9 @@ import { Product } from 'src/app/models/product';
 import { Resenia } from 'src/app/models/resenia';
 import { Respuesta } from 'src/app/models/respuesta';
 import { ProductService } from 'src/app/services/product.service';
+import { ReviewService } from 'src/app/services/review.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-details',
@@ -69,7 +71,7 @@ export class ProductDetailsComponent {
   ];
 
   constructor(private userServices: UserService,public fb: FormBuilder,public productService:ProductService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,private reviewServices:ReviewService) {}
 
   ngOnInit() {
     this.obtenerUsuario();
@@ -94,18 +96,36 @@ export class ProductDetailsComponent {
       return;
     }
     const {nombre,calificacion,comentario} = this.reseniaForm.controls
+    const usuario = this.userServices.obtenerUsuarioDeLaSesion();
 
     const newReview: Resenia = {
+      idUsuario:usuario?.uid,
       nombre: nombre.value as string,
       calificacion: Number(calificacion.value),
-      comentario: comentario.value as string
+      comentario: comentario.value as string,
+      imagenUrl: usuario.photoUrl,
+      idProducto: this.producto.id
     };
 
-    this.resenias.push(newReview);
+   this.reviewServices.addReview(newReview).subscribe((response) =>{
+    Swal.fire("Inicio de sesión exitoso",response,'success')
+   },
+   (error) => {
+    if(error.status == 500){
+      Swal.fire("Error al registrar usuario",error.error.mensaje,'error');
+    }else{
+      Swal.fire(
+        "Se ha producido un error, por favor intente mas tarde",
+        "error"
+      );
+    }
 
-   this.reseniaForm.reset({
-    calificacion:'5'
-   })
+
+   }
+
+   
+   )
+   
   }
 
 
