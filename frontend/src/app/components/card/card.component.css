@@ -5,3 +5,6 @@ font-weight: 500;
 .cardExpand{
     width: 500px !important;
 }
+.btn-ver{
+    background-color: rgb(241, 179, 179);
+}

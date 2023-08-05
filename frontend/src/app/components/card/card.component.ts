@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -7,13 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./card.component.css']
 })
 
-export class CardComponent implements OnInit {
-
+export class CardComponent{
+@Input () product!: Product ;
   
-  constructor() {
-   }
+  constructor(
+    public cartService:CartService) {
+    
+  }
 
-  ngOnInit() {}
+  agregarCarrito(product : Product){
+    console.log("producto",product)
+    this.cartService.addToCart(product);
+  }
+ 
 
 }
 

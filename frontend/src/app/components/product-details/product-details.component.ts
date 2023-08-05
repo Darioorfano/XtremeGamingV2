@@ -1,9 +1,12 @@
 import { SocialUser } from '@abacritt/angularx-social-login';
 import { Component} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Consulta } from 'src/app/models/consulta';
+import { Product } from 'src/app/models/product';
 import { Resenia } from 'src/app/models/resenia';
 import { Respuesta } from 'src/app/models/respuesta';
+import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,6 +15,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent {
+  idProducto:string |null  = ''
+  producto!:Product
   isAdmin: boolean =false; 
   nuevaConsulta: string = ''; 
   consultas: Consulta[] = []; 
@@ -63,13 +68,22 @@ export class ProductDetailsComponent {
     { detalle: 'Color', color: 'Negro' },
   ];
 
-  constructor(private userServices: UserService,public fb: FormBuilder) {}
+  constructor(private userServices: UserService,public fb: FormBuilder,public productService:ProductService,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.obtenerUsuario();
+    this.idProducto = this.route.snapshot.paramMap.get('id')
+    this.obtenerProducto(this.idProducto);
   }
-  async obtenerUsuario() {
-    this.user = await this.userServices.obtenerUsuarioDeLaSesion();
+  obtenerProducto(idProducto:string |null) {
+    
+   this.productService.getProductById(idProducto).subscribe((response)=>{
+    this.producto= response
+   })
+  }
+ obtenerUsuario() {
+  //  this.user = await this.userServices.obtenerUsuarioDeLaSesion();
     this.loggedIn = this.user != null;
   }
 

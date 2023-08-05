@@ -67,6 +67,11 @@ color:grey !important;
 .mat-mdc-card-header-text{
   margin: auto;
 }
+
+#usuarioButton .mdc-button__label{
+  display: flex;
+  gap: 1rem;
+  }
 @media  screen and (min-width:991px) {
   .mat-mdc-card-header-text{
     margin: 0;

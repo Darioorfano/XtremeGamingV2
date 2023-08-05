@@ -1,9 +1,9 @@
 <div class="container">
 <div class="container-fluid pt-5 pb-5">
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let item of slides;">
+    <ng-container *ngFor="let item of products;">
       <ng-template carouselSlide>
-        <app-card class="mb-3"></app-card>
+        <app-card [product]="item" class="mb-3"></app-card>
       </ng-template> 
     </ng-container> 
   </owl-carousel-o>

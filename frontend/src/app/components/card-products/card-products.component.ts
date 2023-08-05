@@ -1,19 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-card-products',
   templateUrl: './card-products.component.html',
   styleUrls: ['./card-products.component.css']
 })
-export class CardProductsComponent {
+export class CardProductsComponent implements OnInit {
+  products: Product[] = []
 
-  slides = [
-    { img: 'https://via.placeholder.com/600.png/09f/fff' },
-    { img: 'https://via.placeholder.com/600.png/021/fff' },
-    { img: 'https://via.placeholder.com/600.png/321/fff' },
-    { img: 'https://via.placeholder.com/600.png/422/fff' },
-    { img: 'https://via.placeholder.com/600.png/654/fff' },
-  ];
+constructor(public productService:ProductService){
 
+}
+
+  ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  getAllProducts(){
+    this.productService.getAllProducts().subscribe((response) =>{
+    this.products=response;
+    });
+
+  }
 
 }

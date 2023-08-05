@@ -11,9 +11,13 @@ const getProductById = async (productId) => {
     return product;
 }
 
-
+const getProductsByName = async(name)=>{
+    const productsByName = await productRepository.getProductsByName(name);
+    return productsByName;
+}
 
 module.exports = {
     listProduct,
     getProductById,
+    getProductsByName
 };

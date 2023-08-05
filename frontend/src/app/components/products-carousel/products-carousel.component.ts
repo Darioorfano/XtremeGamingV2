@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products-carousel',
@@ -7,13 +9,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./products-carousel.component.css']
 })
 export class ProductsCarouselComponent {
-  slides = [
-    { img: 'https://via.placeholder.com/600.png/09f/fff' },
-    { img: 'https://via.placeholder.com/600.png/021/fff' },
-    { img: 'https://via.placeholder.com/600.png/321/fff' },
-    { img: 'https://via.placeholder.com/600.png/422/fff' },
-    { img: 'https://via.placeholder.com/600.png/654/fff' },
-  ];
+products:Product[] = [];
+
   customOptions: OwlOptions = {
     autoplay: true,
     margin: 0,
@@ -45,7 +42,13 @@ export class ProductsCarouselComponent {
       },
     }
   }
-  constructor() {}
+  constructor(private productServices:ProductService) {}
  
-  ngOnInit(): void {}
+  ngOnInit(){
+    this.productServices.getAllProducts().subscribe((response) => {
+      this.products = response;
+      console.log(this.products)
+    })
+ 
+}
 }
