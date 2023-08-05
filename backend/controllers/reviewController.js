@@ -2,6 +2,7 @@ const reviewService = require('../services/reviewService');
 
 const getReviewsFromProduct = async (req, res) => {
     const { idProduct } = req.params;
+    console.log("Entro al controller")
     try {
         const reviews = await reviewService.getReviewsFromProduct(idProduct);
         res.json(reviews);
