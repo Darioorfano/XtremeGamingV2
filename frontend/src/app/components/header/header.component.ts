@@ -18,6 +18,7 @@ loggedIn: boolean = false;
 nombreDelProducto : string = ''
 productosBuscados : Product[] = []
 
+
 constructor(private userServices:UserService,
   private router:Router,
   public cartServices : CartService,
@@ -27,6 +28,7 @@ constructor(private userServices:UserService,
 ngOnInit() {
 this.obtenerUsuario();
 this.carrito=this.cartServices.getCartFromLocalStorage();
+this.obtenerProductos();
 }
 
 obtenerUsuario(){
@@ -34,7 +36,7 @@ obtenerUsuario(){
   this.loggedIn = this.usuario !=null 
 }
 
-obtenerProducto() {  
+obtenerProductos() {  
   if(this.nombreDelProducto.length >=3){
     this.productServices
     .getProductsByName(this.nombreDelProducto)

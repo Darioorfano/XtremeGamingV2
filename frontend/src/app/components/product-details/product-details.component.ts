@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Consulta } from 'src/app/models/consulta';
 import { Product } from 'src/app/models/product';
 import { Resenia } from 'src/app/models/resenia';
+import { ReseniaDTO } from 'src/app/models/reseniaDTO';
 import { Respuesta } from 'src/app/models/respuesta';
 import { ProductService } from 'src/app/services/product.service';
 import { ReviewService } from 'src/app/services/review.service';
@@ -27,7 +28,7 @@ export class ProductDetailsComponent {
   consultaSeleccionada: Consulta | null = null;
   nuevaRespuesta: string = '';
   mostrarFormularioRespuesta: boolean = false; // Lo usamos para mostrar el textarea para el admin
-  resenias: Resenia[] = [];
+  reseniasDTO: ReseniaDTO [] = [] 
   nombre: string = '';
   calificacion: number = 5;
   comentario: string = '';
@@ -77,6 +78,7 @@ export class ProductDetailsComponent {
     this.obtenerUsuario();
     this.idProducto = this.route.snapshot.paramMap.get('id')
     this.obtenerProducto(this.idProducto);
+    this.obtenerResenia();
   }
   obtenerProducto(idProducto:string |null) {
     
@@ -89,7 +91,11 @@ export class ProductDetailsComponent {
     this.loggedIn = this.user != null;
   }
 
-
+  obtenerResenia() {
+    this.reviewServices.getReviews(this.idProducto).subscribe((response) => {
+      this.reseniasDTO = response;
+    })
+  }
  
   agregarResenia(): void {
     if (this.reseniaForm.invalid) {

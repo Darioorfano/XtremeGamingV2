@@ -9,6 +9,7 @@ export const CART_URL = BASE_URL + '/api/cart';
 export const CARTBUY_URL = CART_URL + '/comprar';
 export const REVIEW_URL = BASE_URL + '/api/reviews';
 export const ADDREVIEW_URL = REVIEW_URL + '/add-review';
+export const GETREVIEW_URL = REVIEW_URL + '/getReviews/';
 
 
 

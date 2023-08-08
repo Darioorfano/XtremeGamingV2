@@ -113,18 +113,20 @@
       </mat-tab>
       
       <mat-tab label="RESEÑAS">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Realizar Reseña</button>
         <div class="reviews">
-          <div class="review" *ngFor="let resenia of resenias">
-            <div class="review-name mb-2">{{ resenia.nombre }}</div>
+          <div class="review" *ngFor="let resenia of reseniasDTO">
+            <div class="review-name mb-2">{{ resenia.name }}</div>
             <div class="review-rating mb-3">
               <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
-                <i class="fa fa-star" [ngClass]="{'filled': resenia.calificacion >= i}"></i>
+                <i class="fa fa-star" [ngClass]="{'filled': resenia.rating >= i}"></i>
               </ng-container>
             </div>
-            <div class="review-comment">{{ resenia.comentario }}</div>
+            <div class="review-comment">{{ resenia.comment }}</div>
           </div>
         </div>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Realizar Reseña</button>
+        
+      
       </mat-tab>
     </mat-tab-group>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
