@@ -1,17 +1,30 @@
 const {db} = require('../config/firebase');
-const { collection,getDocs, addDoc} = require("firebase/firestore"); 
+const { collection,getDocs, addDoc, query,where } = require("firebase/firestore"); 
 
 
-const buys = async () => {
-    const querySnapshot = await getDocs(collection(db, "buys"));
-    const listBuys = []
+const getReviewsFromProduct = async ( idUsuario ) => {
+    
+  try {
+    const q = query(collection(db, "purchases"), where("idUsuario", "==", idUsuario));
+    const listPurchases = []
+
+    const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(doc => {
-      let buy = { id: doc.id, ...doc.data()}
-      listBuys.push(buy);
-    });
+      let purchase = { 
+          nroCompra: doc.id,
+          fechaCompra: doc.data().fechaCompra,
+          monto: doc.data().precioTotal
+      }
+      listPurchases.push(purchase);
+  });
     
-    return listBuys;
+    return listPurchases;
+
+  } catch (error) {
+    console.log(error)
+    return {code: 500, mensaje: error };
+}
 }
 
 const buyCart = async (carrito, mediopago, idUsuario, fechaCompra) => {
@@ -29,6 +42,6 @@ const buyCart = async (carrito, mediopago, idUsuario, fechaCompra) => {
 }
 
 module.exports = {
-    buys,
+  getReviewsFromProduct,
     buyCart
 }
