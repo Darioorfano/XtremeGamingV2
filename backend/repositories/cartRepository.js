@@ -1,11 +1,15 @@
 const {db} = require('../config/firebase');
-const { collection,getDocs, addDoc, query,where } = require("firebase/firestore"); 
+const { collection,getDocs, addDoc, query,where, orderBy, limit } = require("firebase/firestore"); 
 
 
 const getReviewsFromProduct = async ( idUsuario ) => {
     
   try {
-    const q = query(collection(db, "purchases"), where("idUsuario", "==", idUsuario));
+    const q = query(
+      collection(db, "purchases"), 
+      where("idUsuario", "==", idUsuario),
+      limit(3));
+
     const listPurchases = []
 
     const querySnapshot = await getDocs(q);
