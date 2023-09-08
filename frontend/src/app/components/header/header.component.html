@@ -23,19 +23,20 @@
             <div class="autocomplete-results flex-grow-0" *ngIf="productosBuscados.length > 0">
               <div class="products d-flex flex-column">
                 <div class="cartas" *ngFor="let product of productosBuscados">
-                  <div class="product-item" routerLink="/product/{{product.id}}">
+                  <a class="product-item" routerLink="/producto/{{product.id}}">
                     <img [src]="product.imagen" alt="Producto" class="product-image">
                     <div class="product-details">
                       <p class="product-name">{{ product.nombreProducto }}</p>
                       <p class="product-price text-start">${{ product.precio }}</p>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </form>
       </div>
+      
       
       <div class="col-lg-1"></div>
       <div class="col-lg-3">
@@ -53,14 +54,14 @@
       </ng-container>
   
         <mat-menu #menu="matMenu">
-          <button mat-menu-item><mat-icon aria-hidden="false" class="person" aria-label="Example home icon" fontIcon="person"></mat-icon>Mi cuenta</button>
+          <button mat-menu-item routerLink="/mi-cuenta"><mat-icon aria-hidden="false" class="person" aria-label="Example home icon" fontIcon="person"></mat-icon>Mi cuenta</button>
           <button mat-menu-item (click)="borrarSesion()"><mat-icon aria-hidden="false" class="logout" aria-label="Example home icon" fontIcon="logout"></mat-icon>
             Cerrar sesión</button>
         </mat-menu>
-        <a routerLink="/carrito" mat-icon-button >
+        <a routerLink="/carrito" class="d-none d-lg-inline" mat-icon-button >
           <mat-icon
-            [matBadge]="carrito.cantidadItems"
-            [matBadgeHidden]="!carrito.cantidadItems"
+            [matBadge]="cantidadItems"
+            [matBadgeHidden]="!cantidadItems"
             matBadgeColor="warn"
             [ngStyle]="{'color':'white'}"
             >shopping_cart</mat-icon
@@ -72,9 +73,11 @@
       <button class="navbar-toggler align-self-start botonMenu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon "></span>
       </button>
- 
+      <div id="rgb-bar"></div>
       <div class="collapse navbar-collapse align-self-start col-lg-12 nav-menu" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex m-auto">
+        
+        <ul class="navbar-nav me-auto mb-2 mt-2 mb-lg-0 d-flex m-auto">
+          
           <li class="nav-item">
             <a class="nav-link text-light" aria-current="page" href="#">Home</a>
           </li>
@@ -88,12 +91,12 @@
   
           <ng-template #notLogged>
           <li class="nav-item">
-            <a class="nav-link text-light d-lg-none" routerLink="/login">Iniciar sesión</a>
+            <a class="nav-link text-light d-lg-none" [routerLink]="'/login'">Iniciar sesión</a>
           </li>
         </ng-template>
 
           <li class="nav-item">
-            <a class="nav-link text-light d-lg-none" href="/carrito">Mi carrito</a>
+            <a class="nav-link text-light d-lg-none" [routerLink]="'/carrito'">Mi carrito</a>
           </li>
         </ul>
         

@@ -61,6 +61,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  color:#1a1919;
 }
 
 .product-image {
@@ -95,6 +97,7 @@
   -webkit-animation: rgbBg 20s linear infinite;
   height: 3px;
   position: relative;  
+  width: 100%;
 }
 
 }

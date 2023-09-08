@@ -1,0 +1,82 @@
+<div class="container mt-5 mb-5">
+        <div class="row d-flex flex-wrap">
+
+            <div class="col-lg-6">
+                
+                <mat-card>
+                    <h5 class="pb-2 text-center"><span class="material-icons">shopping_bag </span>Mis Compras</h5>
+                    <mat-card-content class="mt-3" *ngFor="let compra of compras">
+                        <mat-card>
+                            <mat-card-header>
+                                <div class="col-lg-7">
+                                    <mat-card-title class="d-flex">Numero de Compra : {{compra.nroCompra}}</mat-card-title>
+                                    <mat-card-subtitle>Monto: ${{compra.monto}}</mat-card-subtitle>
+                                </div>
+                              
+                              <div class="col-lg-5">
+                              <h6 class="text-end">Fecha: {{compra.fechaCompra | date:'dd/MM/YYYY'}}</h6>
+                            </div>
+                            </mat-card-header>
+                            <mat-card-actions align="end">
+                              <button class="btn btn-danger">VER DETALLE</button>
+                            </mat-card-actions>
+                          </mat-card>
+                    </mat-card-content>
+                  </mat-card>
+            </div>
+            <div class="col-lg-6 mt-2">           
+                <mat-card class="w-75">
+                    <h5 class="pb-2 text-center"><span class="material-icons">
+                        check_circle_outline
+                        </span>Mi Información</h5>
+                    <mat-card-content class="mt-3">
+                        <mat-card>
+                            <mat-card-header>
+                                <div class="col-lg-6">
+                                    <mat-card-title>Nombre</mat-card-title>
+                                    <mat-card-subtitle>Documento: pepito</mat-card-subtitle>
+                                    <h6>Domicilio: 389321</h6>
+                                </div>
+                                <div class="col-lg-6 text-end">
+                                    <span class="material-icons pt-2">
+                                        download
+                                        </span>
+                                </div>
+                            
+                            </mat-card-header>
+                          </mat-card>
+                    </mat-card-content>
+                  </mat-card>
+            </div>
+
+            <div class="col-lg-6 mt-2">           
+                <mat-card class="w-75">
+                    <h5 class="pb-2 text-center"><span class="material-icons">
+                        check_circle_outline
+                        </span>Mis Favoritos</h5>
+                    <mat-card-content class="mt-3">
+                        <mat-card>
+                            <mat-card-header>
+                                <div class="col-lg-5">
+                                    <mat-card-title>Tipo: Factura B</mat-card-title>
+                                    <mat-card-subtitle>Comprobante: 0000000</mat-card-subtitle>
+                                    <h6 >Presupuesto: 389321</h6>
+                                </div>
+                                <div class="col-lg-6 text-end">
+                                    <span class="material-icons pt-2">
+                                        download
+                                        </span>
+                                </div>
+                            
+                            </mat-card-header>
+                          </mat-card>
+                    </mat-card-content>
+                  </mat-card>
+            </div>
+        </div>
+   
+    
+      
+    
+</div>
+

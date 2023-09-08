@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class CardProductsComponent implements OnInit {
   products: Product[] = []
 
-constructor(public productService:ProductService){
+constructor(public productService:ProductService, public cartService:CartService){
 
 }
 
@@ -23,6 +24,10 @@ constructor(public productService:ProductService){
     this.products=response;
     });
 
+  }
+  agregarCarrito(product : Product){
+    console.log("producto",product)
+    this.cartService.addToCart(product);
   }
 
 }

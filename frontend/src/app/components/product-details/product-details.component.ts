@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/product';
 import { Resenia } from 'src/app/models/resenia';
 import { ReseniaDTO } from 'src/app/models/reseniaDTO';
 import { Respuesta } from 'src/app/models/respuesta';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { UserService } from 'src/app/services/user.service';
@@ -72,7 +73,7 @@ export class ProductDetailsComponent {
   ];
 
   constructor(private userServices: UserService,public fb: FormBuilder,public productService:ProductService,
-    private route: ActivatedRoute,private reviewServices:ReviewService) {}
+    private route: ActivatedRoute,private reviewServices:ReviewService, public cartService:CartService ) {}
 
   ngOnInit() {
     this.obtenerUsuario();
@@ -80,6 +81,13 @@ export class ProductDetailsComponent {
     this.obtenerProducto(this.idProducto);
     this.obtenerResenia();
   }
+
+
+  agregarCarrito(product : Product){
+    console.log("producto",product)
+    this.cartService.addToCart(product);
+  }
+
   obtenerProducto(idProducto:string |null) {
     
    this.productService.getProductById(idProducto).subscribe((response)=>{
@@ -114,6 +122,7 @@ export class ProductDetailsComponent {
 
    this.reviewServices.addReview(newReview).subscribe((response) =>{
     Swal.fire("La reseña ha sido publicada con exito",response,'success')
+    this.obtenerResenia();
    },
    (error) => {
     if(error.status == 500){

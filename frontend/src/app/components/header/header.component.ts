@@ -17,7 +17,7 @@ usuario: Usuario | null = null ;
 loggedIn: boolean = false;
 nombreDelProducto : string = ''
 productosBuscados : Product[] = []
-
+cantidadItems: number = 0;
 
 constructor(private userServices:UserService,
   private router:Router,
@@ -27,10 +27,19 @@ constructor(private userServices:UserService,
 
 ngOnInit() {
 this.obtenerUsuario();
+console.log("Se ejecuta el init del header")
 this.carrito=this.cartServices.getCartFromLocalStorage();
+console.log(this.carrito)
 this.obtenerProductos();
+this.obtenerCantidadDeItemsCarrito();
 }
-
+obtenerCantidadDeItemsCarrito(){
+  this.cartServices.cantidadItems$.subscribe((cantidad)=>{
+    this.cantidadItems=cantidad;
+    console.log("Cantidad items",this.cantidadItems)
+  })
+ 
+}
 obtenerUsuario(){
  this.usuario = this.userServices.obtenerUsuarioDeLaSesion();
   this.loggedIn = this.usuario !=null 

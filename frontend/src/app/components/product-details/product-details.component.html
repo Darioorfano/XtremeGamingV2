@@ -11,7 +11,7 @@
     <div class="container border-top border-secondary">
       <div class="col-lg-6">
         <h6 class="mt-4">PRECIO ESPECIAL</h6>
-        <h4 class="mt-2">$50000</h4>
+        <h4 class="mt-2">${{producto.precio}}</h4>
       </div>
     </div>
     <div class="container border-top border-bottom border-secondary containerInfo">
@@ -27,7 +27,7 @@
         pais.
       </p>
     </div>
-    <button class="btn btn-danger my-4">AGREGAR AL CARRITO</button>
+    <button class="btn btn-danger my-4" (click)="agregarCarrito(producto)">AGREGAR AL CARRITO</button>
   </div>
   <section class="container-fluid mt-4">
     <mat-tab-group>

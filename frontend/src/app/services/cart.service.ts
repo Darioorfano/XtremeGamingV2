@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Carrito } from '../models/carrito';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/product';
 import { CarritoItem } from '../models/carritoItem';
-import { CARTBUY_URL } from '../utility/constant';
+import { CARTBUY_URL, GETPURCHASE_URL } from '../utility/constant';
+import { Checkout } from '../models/checkout';
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,24 @@ import { CARTBUY_URL } from '../utility/constant';
 export class CartService {
   
   private cart:Carrito = this.getCartFromLocalStorage();
+  public cantidadItemsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public cantidadItems$ = this.cantidadItemsSubject.asObservable();
+
+  private cantidadItems: number = 0;
 
   constructor(
     private _snackBar: MatSnackBar,
     public httpClient:HttpClient
-  ) { }
+  ) {
+    if(this.cart){
+      this.cantidadItemsSubject.next(this.cart.cantidadItems);
+    }else{
+      this.cantidadItemsSubject.next(this.cantidadItems);
+    }
+   
+   }
+
+    
 
   addToCart(product: Product):void {
     console.log(this.cart)
@@ -36,6 +51,9 @@ export class CartService {
     this.cart.listaProductos.push(carritoItem);
     this.setCartToLocalStorage();
     this._snackBar.open('¡Producto agregado al carrito!', 'Ok', { duration: 3000 });
+    this.cantidadItems++;
+    this.cantidadItemsSubject.next(this.cantidadItems);
+
   }
 
   removeFromCart(productId: string):void{
@@ -45,6 +63,8 @@ export class CartService {
     this._snackBar.open('Producto eliminado del carrito.', 'Ok', {
       duration: 3000,
     });
+    this.cantidadItems--;
+    this.cantidadItemsSubject.next(this.cantidadItems);
   }
 
   changeQuantity(productId: string, quantity: number):void{
@@ -105,16 +125,19 @@ export class CartService {
 
   getCartFromLocalStorage(): Carrito {
     const cartJson = localStorage.getItem('Cart');
-    if(cartJson){
-      return JSON.parse(cartJson)
-    }
-    const carrito : Carrito ={
+ 
+    let carrito : Carrito ={
       listaProductos : [],
       usuarioId :'',
       cantidadItems : 0,
       precioTotal: 0
     }
-    return carrito
+    if(cartJson){
+       carrito = JSON.parse(cartJson)
+      this.cantidadItems=carrito.cantidadItems;
+    }
+   //this.cantidadItemsSubject.next(this.cantidadItems);
+    return carrito;
   }
 
   getTotalFromProductsInCart(): number {
@@ -141,9 +164,17 @@ export class CartService {
     return subtotal;
   }
 
-   buyCart() :Observable<any> {
+   buyCart(checkout:Checkout) :Observable<any> {
 
-    return this.httpClient.post<any>(CARTBUY_URL,this.cart);
+    return this.httpClient.post<any>(CARTBUY_URL,checkout);
+  }
+
+  getQuantityItems(): number {
+    return this.cantidadItems;
+  }
+
+  obtenerMisCompras(idUsuario:string):Observable<any>{
+    return this.httpClient.get<any>(GETPURCHASE_URL+idUsuario)
   }
 }
 

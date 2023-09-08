@@ -6,10 +6,12 @@ export const USER_URL =BASE_URL + '/api/users';
 export const USER_LOGIN =USER_URL + '/login';
 export const USER_REGISTERURL =USER_URL + '/register';
 export const CART_URL = BASE_URL + '/api/cart';
+export const GETPURCHASE_URL = CART_URL + '/mis-compras/';
 export const CARTBUY_URL = CART_URL + '/comprar';
 export const REVIEW_URL = BASE_URL + '/api/reviews';
 export const ADDREVIEW_URL = REVIEW_URL + '/add-review';
 export const GETREVIEW_URL = REVIEW_URL + '/getReviews/';
+
 
 
 

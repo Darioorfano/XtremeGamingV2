@@ -16,13 +16,15 @@ export class CartComponent implements OnInit {
 
   }
 ngOnInit(): void {
-  this.carrito ={
-    listaProductos : [],
-    usuarioId :'',
-    cantidadItems : 0,
-    precioTotal: 0
-  }
+  this.carrito = this.cartService.getCart();  
 }
+
+  clearCart(){
+ this.carrito.listaProductos.forEach(item => {
+  this.removeFromCart(item);
+ })
+  }
+
   removeFromCart(cartProduct:CarritoItem){
     this.cartService.removeFromCart(cartProduct.producto.id);
     }

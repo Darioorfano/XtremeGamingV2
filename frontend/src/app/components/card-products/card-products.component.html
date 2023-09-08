@@ -10,7 +10,7 @@
         <mat-card-subtitle>
           <h4 class="mt-4 text-center text-lg-start ">${{producto.precio}}</h4>
           <div class="container d-flex">
-          <button class="btn btn-danger my-5 d-flex d-lg-inline m-auto" >AGREGAR AL CARRITO</button>
+          <button class="btn btn-danger my-5 d-flex d-lg-inline m-auto" (click)="agregarCarrito(producto)" >AGREGAR AL CARRITO</button>
          <a class="btn mx-5 btn-danger text-light m-auto " [routerLink]="'/producto/' + producto.id">VER PRODUCTO</a>  
         </div>
         </mat-card-subtitle>

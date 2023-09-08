@@ -1,60 +1,57 @@
-<div *ngIf="this.carrito.cantidadItems == 0 ">
+<div *ngIf="this.carrito.listaProductos.length == 0 ">
     <div class="text-center m-5">
       <h3>Tu carrito esta vacio.</h3>
       <a routerLink="/" class="text-decoration-none btn btn-secondary">Empieza a comprar</a>
     </div>
   </div>
-  
-  <section class="h-100 h-custom align-items-center justify-content-center" *ngIf="this.carrito.cantidadItems != 0">
+  <section class="h-100 h-custom align-items-center justify-content-center" *ngIf="carrito.listaProductos.length != 0">
     <div class="container mt-5">
       <div class="row">
         <div class="col">
           <div class="d-flex justify-content-between align-items-center mb-5">
             <h1 class="fw-bold mb-0 tituloprincipal">Carrito</h1>
-            <button type="button" class="btn btn-danger" (click)="cartService.clearCart()">Vaciar
-              carrito</button>
+            <button type="button" class="btn btn-danger" (click)="clearCart()">Vaciar carrito</button>
           </div>
-          <div class="table-responsive ">
+          <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Producto</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Precio unitario</th>
-                  <th scope="col">Subtotal</th>
-                  <th scope="col"></th>
+                  <th class="col-lg-1 "scope="col"></th>
+                  <th class="col-lg-4" scope="col">Producto</th>
+                  <th class="col-lg-2 text-center" scope="col">Cantidad</th>
+                  <th class="col-lg-2" scope="col">Precio unitario</th>
+                  <th class="col-lg-2" scope="col">Subtotal</th>
+                  <th class="col-lg-2" scope="col"></th>
                 </tr>
               </thead>
-              <tbody *ngFor="let cartProduct of this.carrito.listaProductos">
-                <tr>
-                  <th scope="row ">
-                    <img src={{cartProduct.producto.imagen}} class="img-fluid" width="100px" alt={{cartProduct.producto.nombreProducto}}>
-                  </th>
+              <tbody>
+                <tr  *ngFor="let cartProduct of carrito.listaProductos">
                   <td>
-                    <h6 class="text-black mb-0">{{cartProduct.producto.nombreProducto}}</h6>
+                    <img [src]="cartProduct.producto.imagen" class="img-fluid d-none d-lg-flex" width="100px" [alt]="cartProduct.producto.nombreProducto">
                   </td>
                   <td>
+                    <h6 class="text-black mb-0">{{ cartProduct.producto.nombreProducto }}</h6>
+                  </td>
+                  <td class="">
                     <div class="d-flex justify-content-between align-items-center">
-  
-                      <button class="btn btn-link px-2" (click)="decrementQuantity(cartProduct)"><i
-                          class="fas fa-minus"></i></button>
-  
+                      <button class="btn btn-link px-2" (click)="decrementQuantity(cartProduct)">
+                        <i class="fas fa-minus"></i>
+                      </button>
                       <input id="form1" min="1" name="quantity" [(ngModel)]="cartProduct.cantidad"
                         class="form-control form-control-sm" (ngModelChange)="onQuantityChange(cartProduct)" />
-  
-                      <button class="btn btn-link px-2" (click)="incrementQuantity(cartProduct)"><i
-                          class="fas fa-plus"></i></button>
+                      <button class="btn btn-link px-2" (click)="incrementQuantity(cartProduct)">
+                        <i class="fas fa-plus"></i>
+                      </button>
                     </div>
                   </td>
-                  <td>
-                    <h6 class="mb-0">$ {{cartProduct.producto.precio}}</h6>
+                  <td class="">
+                    <h6 class="mb-0 text-end  ">$ {{ cartProduct.producto.precio }}</h6>
                   </td>
                   <td>
-                    <h6 class="mb-0">$ {{getTotalProductCost(cartProduct)}}</h6>
+                    <h6 class="mb-0 text-end ">$ {{ getTotalProductCost(cartProduct) }}</h6>
                   </td>
                   <td>
-                    <a (click)="removeFromCart(cartProduct)" class="text-muted"><i class="fas fa-times"></i></a>
+                    <a (click)="removeFromCart(cartProduct)" class="text-danger"><i class="fas fa-times"></i></a>
                   </td>
                 </tr>
               </tbody>
@@ -62,7 +59,7 @@
           </div>
         </div>
   
-        <div class="p-5 col-4">
+        <div class="p-5 col-12 col-lg-4">
           <h3 class="fw-bold  pt-1">RESUMEN</h3>
           <hr class="my-4">
   
@@ -76,18 +73,15 @@
             <h5 name="envio" value="0">$ 400</h5>
           </div>
   
-  
           <hr class="my-4">
   
           <div class="d-flex justify-content-between mb-5">
             <h5 class="text-uppercase">Total</h5>
             <h5>$ {{ getTotalCost() }}</h5>
           </div>
-          <button type="button" routerLink="/checkout" class="btn-finalizar">
-            Continuar
-          </button>
-  
+          <a routerLink="/checkout" class="btn btn-danger d-block m-auto">Continuar</a>
         </div>
       </div>
     </div>
   </section>
+  

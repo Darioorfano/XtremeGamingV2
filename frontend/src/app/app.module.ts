@@ -29,6 +29,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CardComponent } from './components/card/card.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AccountViewComponent } from './views/account-view/account-view.component';
+import { AccountComponent } from './components/account/account.component';
+import { CheckoutViewComponent } from './views/checkout-view/checkout-view.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -49,6 +53,10 @@ import { CartComponent } from './components/cart/cart.component';
     ProductDetailsViewComponent,
     CartViewComponent,
     CartComponent,
+    AccountViewComponent,
+    AccountComponent,
+    CheckoutViewComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
