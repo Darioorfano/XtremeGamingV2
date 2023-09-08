@@ -13,8 +13,8 @@ const getReviewsFromProduct = async ( idUsuario ) => {
     querySnapshot.forEach(doc => {
       let purchase = { 
           nroCompra: doc.id,
-          fechaCompra: doc.data().fechaCompra,
-          monto: doc.data().precioTotal
+          fechaCompra: secondsToDate(doc.data().fechaCompra.seconds),
+          monto: doc.data().carrito.precioTotal
       }
       listPurchases.push(purchase);
   });
@@ -39,6 +39,10 @@ const buyCart = async (carrito, mediopago, idUsuario, fechaCompra) => {
       return {code: 500, mensaje: error };
   }
     
+}
+
+const secondsToDate = (seconds) => {
+  return new Date(seconds * 1000); // Multiplica por 1000 para convertir segundos en milisegundos
 }
 
 module.exports = {
