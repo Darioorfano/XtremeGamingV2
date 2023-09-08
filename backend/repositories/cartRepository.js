@@ -18,6 +18,7 @@ const getReviewsFromProduct = async ( idUsuario ) => {
       let purchase = { 
           nroCompra: doc.id,
           fechaCompra: secondsToDate(doc.data().fechaCompra.seconds),
+          productos: doc.data().carrito.listaProductos,
           monto: doc.data().carrito.precioTotal
       }
       listPurchases.push(purchase);
