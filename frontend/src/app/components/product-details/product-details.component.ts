@@ -1,5 +1,5 @@
 import { SocialUser } from '@abacritt/angularx-social-login';
-import { Component} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Consulta } from 'src/app/models/consulta';
@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-product-details',
@@ -33,6 +34,7 @@ export class ProductDetailsComponent {
   nombre: string = '';
   calificacion: number = 5;
   comentario: string = '';
+  @ViewChild('exampleModal') modal: any; // Referencia al modal
 
 
   
@@ -122,7 +124,20 @@ export class ProductDetailsComponent {
 
    this.reviewServices.addReview(newReview).subscribe((response) =>{
     Swal.fire("La reseña ha sido publicada con exito",response,'success')
+  
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      modalElement.style.display = 'none';
+      modalElement.classList.remove('show');
+    }
+    document.body.classList.remove('modal-open');
+    const modalBackdrop = document.querySelector('.modal-backdrop');
+    if (modalBackdrop) {
+      modalBackdrop.remove();
+    }
+    
     this.obtenerResenia();
+    
    },
    (error) => {
     if(error.status == 500){
@@ -137,7 +152,12 @@ export class ProductDetailsComponent {
    )
   }
 
-
+  cerrarModal() {
+    this.modal.nativeElement.style.display = 'none';
+  this.modal.nativeElement.classList.remove('show');
+  document.body.classList.remove('modal-open');
+  document.body.style.paddingRight = '';
+  }
 
   enviarConsulta() {
     const fechaHoraActual = new Date();
