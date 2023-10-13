@@ -124,6 +124,8 @@ export class ProductDetailsComponent {
 
    this.reviewServices.addReview(newReview).subscribe((response) =>{
     Swal.fire("La reseña ha sido publicada con exito",response,'success')
+    document.body.style.overflow = "auto";
+    document.body.style.paddingRight = "0";
   
     const modalElement = document.getElementById('exampleModal');
     if (modalElement) {
