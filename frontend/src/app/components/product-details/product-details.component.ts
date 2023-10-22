@@ -1,4 +1,3 @@
-import { SocialUser } from '@abacritt/angularx-social-login';
 import { Component, ViewChild} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +6,7 @@ import { Product } from 'src/app/models/product';
 import { Resenia } from 'src/app/models/resenia';
 import { ReseniaDTO } from 'src/app/models/reseniaDTO';
 import { Respuesta } from 'src/app/models/respuesta';
+import { Usuario } from 'src/app/models/usuario';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ReviewService } from 'src/app/services/review.service';
@@ -25,7 +25,7 @@ export class ProductDetailsComponent {
   isAdmin: boolean =false; 
   nuevaConsulta: string = ''; 
   consultas: Consulta[] = []; 
-  user: SocialUser | null = null;
+  user: Usuario | null = null;
   loggedIn: boolean = false;
   consultaSeleccionada: Consulta | null = null;
   nuevaRespuesta: string = '';

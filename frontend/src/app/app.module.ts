@@ -75,7 +75,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
 
   bootstrap: [AppComponent]
