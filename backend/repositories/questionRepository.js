@@ -61,9 +61,10 @@ const getQuestionsFromUser = async (idUser) => {
     }
 }
 
-const postQuestionInProduct = async (idUsuario, idProducto, content, name, photoUrl, rol) => {
+const postQuestionInProduct = async (idUsuario, idProducto, content, name, photoUrl) => {
     let fecha = new Date();
     let respondido = false;
+    let rol = "cliente"
     let respuesta = {};
     try {
         const question = {
@@ -87,9 +88,10 @@ const postQuestionInProduct = async (idUsuario, idProducto, content, name, photo
     }
 }
 
-const replyQuestion = async (idQuestion, idUsuario, content, name, photoUrl, rol) => {
+const replyQuestion = async (idQuestion, idUsuario, content, name, photoUrl) => {
     let fecha = new Date();
     let respondido = true;
+    let rol = "admin"
     try {
         const respuesta = {
             idUsuario,

@@ -12,13 +12,13 @@ const getQuestionsFromUser = async (idUser) => {
     return questions;
 }
 
-const postQuestionInProduct = async (idUsuario, idProducto, content, name, photoUrl, rol) => {
-    const result = await questionRepository.postQuestionInProduct(idUsuario, idProducto, content, name, photoUrl, rol)
+const postQuestionInProduct = async (idUsuario, idProducto, content, name, photoUrl) => {
+    const result = await questionRepository.postQuestionInProduct(idUsuario, idProducto, content, name, photoUrl)
     return result;
 }
 
-const replyQuestion = async (idQuestion, idUsuario, content, name, photoUrl, rol) => {
-    const result = questionRepository.replyQuestion(idQuestion, idUsuario, content, name, photoUrl, rol)
+const replyQuestion = async (idQuestion, idUsuario, content, name, photoUrl) => {
+    const result = questionRepository.replyQuestion(idQuestion, idUsuario, content, name, photoUrl)
     return result;
 }
 

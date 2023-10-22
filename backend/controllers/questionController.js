@@ -24,10 +24,10 @@ const getQuestionsFromUser = async (req, res) => {
 }
 
 const postQuestion = async (req, res) => {
-    const { idUsuario, idProducto, content, name, photoUrl, rol } = req.body;
+    const { idUsuario, idProducto, content, name, photoUrl } = req.body;
 
     try {
-        const result = await questionService.postQuestionInProduct(idUsuario, idProducto, content, name, photoUrl, rol)
+        const result = await questionService.postQuestionInProduct(idUsuario, idProducto, content, name, photoUrl)
         res.status(result.code).json({mensaje: result.mensaje})
     } catch (error) {
         res.status(500).json({ error: `Error al crear la pregunta` });
@@ -35,10 +35,10 @@ const postQuestion = async (req, res) => {
 }
 
 const replyQuestion = async (req, res) => {
-    const { idUsuario, idQuestion, content, name, photoUrl, rol } = req.body;
+    const { idUsuario, idQuestion, content, name, photoUrl } = req.body;
 
     try {
-        const result = await questionService.replyQuestion(idQuestion, idUsuario, content, name, photoUrl, rol)
+        const result = await questionService.replyQuestion(idQuestion, idUsuario, content, name, photoUrl)
         res.status(result.code).json({mensaje: result.mensaje})
     } catch (error) {
         res.status(500).json({ error: `Error al enviar la respuesta` });
