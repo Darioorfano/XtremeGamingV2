@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* h4 {
+  font:400 24px/30px Montserrat,sans-serif!important;
+} */
+.precio{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.nombre-producto{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+}
 body{
   background-color: #eee;
 }

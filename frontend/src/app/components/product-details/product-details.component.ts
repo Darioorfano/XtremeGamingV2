@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Consulta } from 'src/app/models/consulta';
@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent {
-  idProducto:string |null  = ''
+  @Input() idProducto:string |null  = ''
   producto!:Product
   isAdmin: boolean =false; 
   nuevaConsulta: string = ''; 
@@ -79,10 +79,13 @@ export class ProductDetailsComponent {
 
   ngOnInit() {
     this.obtenerUsuario();
-    this.idProducto = this.route.snapshot.paramMap.get('id')
-    this.obtenerProducto(this.idProducto);
+    this.route.params.subscribe((params) =>{
+      this.idProducto = this.route.snapshot.paramMap.get('id')
+      this.obtenerProducto(this.idProducto);
+    })
     this.obtenerResenia();
   }
+ 
 
 
   agregarCarrito(product : Product){

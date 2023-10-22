@@ -3,7 +3,7 @@
     <img src = {{producto.imagen}} alt="..." />
   </div>
   <div class="col-lg-5 text-center text-lg-start m-auto mt-3">
-    <h4>{{producto.nombreProducto}}</h4>
+    <h4 class="nombre-producto">{{producto.nombreProducto}}</h4>
     <div class="container pt-3 pb-3">
       <mat-chip class="pildora" role="option">ID : {{producto.id}}</mat-chip>
       <mat-chip class="pildora mx-2" role="option">MARCA: {{producto.marca}}</mat-chip>
@@ -11,7 +11,7 @@
     <div class="container border-top border-secondary">
       <div class="col-lg-6">
         <h6 class="mt-4">PRECIO ESPECIAL</h6>
-        <h4 class="mt-2">${{producto.precio}}</h4>
+        <h4 class="mt-2 precio">${{producto.precio}}</h4>
       </div>
     </div>
     <div class="container border-top border-bottom border-secondary containerInfo">
@@ -81,7 +81,10 @@
           <div class="consulta" *ngFor="let consulta of consultas">
             <div class="consulta-info">
               <div class="container-fluid usuario-info">
-                <img src="{{ user?.photoUrl }}" class="mt-2" alt="Foto de perfil del usuario">
+                <img *ngIf="isAdmin; else userImage" src="../../../assets/adminPhoto.png" class="mt-2 foto-usuario" alt="Foto de perfil del usuario">
+              <ng-template #userImage>
+                <img src="../../../assets/userPhoto.png" class="mt-2" alt="Foto de perfil del usuario">
+              </ng-template>                
                 <div>
                   <p class="consulta-texto pt-2">{{ consulta.texto }}</p>
                   <div class="hora-usuario">
