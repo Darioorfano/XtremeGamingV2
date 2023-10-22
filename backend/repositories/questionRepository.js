@@ -12,7 +12,7 @@ const getQuestionsFromProduct = async (idProduct) => {
             let question = { 
                 name:doc.data().name,
                 content: doc.data().content,
-                fecha: doc.data().fecha,
+                fecha: secondsToDate(doc.data().fecha.seconds),
                 idProducto: doc.data().idProducto,
                 idUsuario: doc.data().idUsuario,
                 photoUrl: doc.data().photoUrl,
@@ -42,7 +42,7 @@ const getQuestionsFromUser = async (idUser) => {
             let question = { 
                 name:doc.data().name,
                 content: doc.data().content,
-                fecha: doc.data().fecha,
+                fecha: secondsToDate(doc.data().fecha.seconds),
                 idProducto: doc.data().idProducto,
                 idUsuario: doc.data().idUsuario,
                 photoUrl: doc.data().photoUrl,
