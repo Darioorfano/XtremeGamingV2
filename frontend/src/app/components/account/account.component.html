@@ -4,7 +4,7 @@
             <div class="col-lg-6">
                 
                 <mat-card>
-                    <h5 class="pb-2 text-center"><span class="material-icons">shopping_bag </span>Mis Compras</h5>
+                    <h5 class="pb-2 text-center pt-3">Mis Compras</h5>
                     <mat-card-content class="mt-3" *ngFor="let compra of compras">
                         <mat-card>
                             <mat-card-header class="d-flex flex-column align-items-start">
@@ -44,13 +44,13 @@
                                                 <img [src]="productoComprado.producto.imagen" class="img-fluid d-none d-lg-flex" width="100px" [alt]="productoComprado.producto.nombreProducto">
                                               </td>
                                               <td>
-                                                <h6 class="text-black text-center mt-3 mb-0">{{productoComprado.producto.nombreProducto}}</h6>
+                                                <h6 class="text-black text-center mt-3 mb-0 nombre-producto">{{productoComprado.producto.nombreProducto}}</h6>
                                               </td>
                                               <td class="">
                                                <h6 class="mb-0 text-center">{{productoComprado.cantidad}}</h6>
                                               </td>
                                               <td class="">
-                                                <h6 class="mb-0 text-center ">$ {{productoComprado.producto.precio}}</h6>
+                                                <h6 class="mb-0 text-center precio ">$ {{productoComprado.producto.precio}}</h6>
                                               </td>
                                             </tr>
                                           </tbody>
@@ -70,13 +70,11 @@
                   </mat-card>
                   
             </div>
-            <div class="col-lg-6 mt-2">           
+            <div class="col-lg-6 mt-3 mt-lg-0 ">           
                 <mat-card class="w-100 w-lg-75">
-                    <h5 class="pb-2 text-center"><span class="material-icons">
-                        check_circle_outline
-                        </span>Mi Información</h5>
-                    <mat-card-content class="mt-3">
-                        <mat-card>
+                    <h5 class="pb-2 pt-3 text-center">Mi Información</h5>
+                    <mat-card-content class="mt-3 pb-5">
+                        <mat-card class="pb-5">
                 
                                 <div class="col-lg-6">
                                     <mat-card-title>Nombre: {{usuario.displayName}}</mat-card-title>

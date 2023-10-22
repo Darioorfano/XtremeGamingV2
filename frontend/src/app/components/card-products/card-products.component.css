@@ -1,14 +1,30 @@
 .cardProduct{
 max-width: 100%;
 }
+
 .fotoProducto{
     width: 50%;
     display: block;
     margin: auto;
 }
-
+.nombre-producto{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+}
+.precio{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+}
 @media screen and (min-width:991px){
+    
+    .cardProductosHeader{
+        max-width: 546px;
+    }
+    
     .fotoProducto{
     width: 100%;
+    margin: 10% 0 0 10%;
     }
 }

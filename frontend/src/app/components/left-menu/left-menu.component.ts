@@ -6,23 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./left-menu.component.css']
 })
 export class LeftMenuComponent {
-  panelOpenState = false;
-  dropDowns = [
-    { texto: 'Equipos y Notebooks' },
-    { texto: 'Procesadores' },
-    { texto: 'Mothers' },
-    { texto: 'Placas de Video' },
-    { texto: 'Memorias RAM' },
-    { texto: 'Almacenamiento' },
-    { texto: 'Refrigeracion' },
-    { texto: 'Gabinetes' },
-    { texto: 'Fuentes' },
+  categories = [
+    { texto: 'Notebooks' },
+    { texto: 'Componentes de pc' },
     { texto: 'Monitores y Televisores' },
-    { texto: 'Periféricos' },
-    { texto: 'Sillas Gamers' },
-    { texto: 'Conectividad' },
-    { texto: 'Estabilizadores y UPS' },
-    { texto: 'Cables y Adaptadores' },
-    { texto: 'Celulares y Smartwatch' },
+    { texto: 'Periféricos' }
   ];
 }

@@ -3,14 +3,14 @@
       <div class="col-lg-3">
         <img src="{{producto.imagen}}"class="card-img-top img-fluid fotoProducto" alt="...">
       </div>
-      <mat-card-header class="d-flex flex-column m-auto flex-lg-row">
+      <mat-card-header class="d-flex flex-column m-auto flex-lg-row  cardProductosHeader">
         <mat-card-title>
-          <h4 class="text-center  text-danger text-lg-start">{{producto.nombreProducto}}</h4>
+          <h4 class="text-center  text-danger text-lg-start nombre-producto">{{producto.nombreProducto}}</h4>
         </mat-card-title>
         <mat-card-subtitle>
-          <h4 class="mt-4 text-center text-lg-start ">${{producto.precio}}</h4>
-          <div class="container d-flex">
-          <button class="btn btn-danger my-5 d-flex d-lg-inline m-auto" (click)="agregarCarrito(producto)" >AGREGAR AL CARRITO</button>
+          <h4 class="mt-4 text-center text-lg-start precio ">${{producto.precio}}</h4>
+          <div class="container d-flex p-0">
+          <button class="btn btn-danger my-5 d-flex d-lg-inline " (click)="agregarCarrito(producto)" >AGREGAR AL CARRITO</button>
          <a class="btn mx-5 btn-danger text-light m-auto " [routerLink]="'/producto/' + producto.id">VER PRODUCTO</a>  
         </div>
         </mat-card-subtitle>
