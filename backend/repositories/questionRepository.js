@@ -1,13 +1,64 @@
 const {db} = require('../config/firebase');
 const { addDoc, collection, query, doc, getDocs, setDoc, where } = require("firebase/firestore"); 
 
-const getQuestionsFromProduct = (idProduct) => {
-    const listQuestions = []
-    const q = query(collection(db, "reviews"), where("idProducto", "==", idProduct));
+const getQuestionsFromProduct = async (idProduct) => {
+    try {
+        const listQuestions = []
+        const q = query(collection(db, "questions"), where("idProducto", "==", idProduct));
+
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach(doc => {
+            let question = { 
+                name:doc.data().name,
+                content: doc.data().content,
+                fecha: doc.data().fecha,
+                idProducto: doc.data().idProducto,
+                idUsuario: doc.data().idUsuario,
+                photoUrl: doc.data().photoUrl,
+                respondido: doc.data().respondido,
+                respuesta: doc.data().respuesta,
+                rol: doc.data().rol
+            }
+            listQuestions.push(question);
+        });
+
+        return listQuestions;
+
+    } catch (error) {
+        console.log(error)
+        return {code: 500, mensaje: error };
+    }
 }
 
-const getQuestionsFromUser = (idUser) => {
+const getQuestionsFromUser = async (idUser) => {
+    try {
+        const listQuestions = []
+        const q = query(collection(db, "questions"), where("idUsuario", "==", idUser));
 
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach(doc => {
+            let question = { 
+                name:doc.data().name,
+                content: doc.data().content,
+                fecha: doc.data().fecha,
+                idProducto: doc.data().idProducto,
+                idUsuario: doc.data().idUsuario,
+                photoUrl: doc.data().photoUrl,
+                respondido: doc.data().respondido,
+                respuesta: doc.data().respuesta,
+                rol: doc.data().rol
+            }
+            listQuestions.push(question);
+        });
+
+        return listQuestions;
+
+    } catch (error) {
+        console.log(error)
+        return {code: 500, mensaje: error };
+    }
 }
 
 const postQuestionInProduct = async (idUsuario, idProducto, content, name, photoUrl, rol) => {
