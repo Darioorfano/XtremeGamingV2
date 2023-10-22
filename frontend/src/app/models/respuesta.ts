@@ -1,4 +1,7 @@
 export interface Respuesta {
-    texto: string;
-    fechaHora: Date;
+    idUsuario:string,
+    idQuestion:string,
+    name:string,
+    content: string,
+    photoUrl:string
 }

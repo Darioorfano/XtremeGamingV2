@@ -68,50 +68,35 @@
         <div class="consulta-form mt-2">
           <h2 class="pt-2 pb-2">¿Tenés preguntas sobre este producto?</h2>
           <p>Escribi tu pregunta</p>
-          <form class="formulario-consulta" (submit)="enviarConsulta()">
+          <form [formGroup]="consultaForm"  class="formulario-consulta" (ngSubmit)="enviarConsulta()">
             <div class="form-group">
-              <textarea name="consulta" rows="4" placeholder="Escribe tu consulta aquí" [(ngModel)]="nuevaConsulta" class="form-control"></textarea>
+              <textarea name="content" formControlName="content" rows="4" placeholder="Escribe tu consulta aquí" class="form-control"></textarea>
             </div>
             <button class="btn btn-danger enviar-consulta" type="submit">Enviar consulta</button>
           </form>
         </div>
       
-        <div class="hilo-consultas">
-          <h5 class="text-danger" *ngIf="consultas.length > 0">Otros usuarios consultaron:</h5>
-          <div class="consulta" *ngFor="let consulta of consultas">
-            <div class="consulta-info">
-              <div class="container-fluid usuario-info">
-                <img *ngIf="isAdmin; else userImage" src="../../../assets/adminPhoto.png" class="mt-2 foto-usuario" alt="Foto de perfil del usuario">
-              <ng-template #userImage>
-                <img src="../../../assets/userPhoto.png" class="mt-2" alt="Foto de perfil del usuario">
-              </ng-template>                
-                <div>
-                  <p class="consulta-texto pt-2">{{ consulta.texto }}</p>
-                  <div class="hora-usuario">
-                    <p class="consulta-fecha text-end mr-2">{{ consulta.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</p>
-                  </div>
-                </div>
+        <div class="reviews">
+          <div class="review" *ngFor="let consulta of questionDTO">
+            <div class="review-name mb-2">{{consulta.name }}</div>
+            <div class="review-comment">{{ consulta.content }}</div>
+            <div>{{consulta.fecha | date:'dd/MM/YYYY'}}</div>
+            <button class="btn btn-link text-end" (click)="responderConsulta(consulta)" *ngIf='!consulta.respondido'>Responder</button>
+            <div *ngIf="consultaSeleccionada?.idQuestion === consulta.idQuestion">
+              
+              <form [formGroup]="respuestaForm" *ngIf="mostrarFormularioRespuesta" (ngSubmit)="enviarRespuesta(consulta.idQuestion)" class="formulario-respuesta mt-2">
+                <textarea formControlName="content" name="content" rows="4" placeholder="Escribe tu respuesta aquí" class="form-control"></textarea>
+                <button class="btn btn-danger mt-3 enviar-respuesta" >Enviar respuesta</button>
+              </form>
+            </div>
+            <div  *ngIf="consulta.respondido"class="container-fluid admin-info">
+              <img class="admin-photo" src="../../../assets/adminPhoto.png" alt="">
+              <div class="respuesta-info">
+                <p class="respuesta-texto respuesta-mensaje">{{ consulta.respuesta.content }}</p>
+                <p class="respuesta-fecha">{{ consulta.respuesta.fecha | date: 'dd/MM/yyyy HH:mm' }}</p>
               </div>
             </div>
-            <div class="respuestas">
-              <div class="respuesta" *ngFor="let respuesta of consulta.respuestas">
-                <div class="container-fluid admin-info">
-                  <img class="admin-photo" src="../../../assets/adminPhoto.png" alt="">
-                  <div class="respuesta-info">
-                    <p class="respuesta-texto respuesta-mensaje">{{ respuesta.texto }}</p>
-                    <p class="respuesta-fecha">{{ respuesta.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-link text-end" *ngIf="!isAdmin" (click)="responderConsulta(consulta)">Responder</button>
-            <div *ngIf="!isAdmin && consultaSeleccionada === consulta">
-              <div *ngIf="mostrarFormularioRespuesta" class="formulario-respuesta mt-2">
-                <textarea name="respuesta" rows="4" placeholder="Escribe tu respuesta aquí" [(ngModel)]="nuevaRespuesta" minlength="20" class="form-control"></textarea>
-                <button class="btn btn-danger mt-3 enviar-respuesta" (click)="enviarRespuesta()">Enviar respuesta</button>
-              </div>
-            </div>
-          </div>
+          </div>  
         </div>
       </mat-tab>
       

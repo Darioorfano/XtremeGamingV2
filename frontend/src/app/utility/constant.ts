@@ -11,9 +11,11 @@ export const CARTBUY_URL = CART_URL + '/comprar';
 export const REVIEW_URL = BASE_URL + '/api/reviews';
 export const ADDREVIEW_URL = REVIEW_URL + '/add-review';
 export const GETREVIEW_URL = REVIEW_URL + '/getReviews/';
-
-
-
+export const QUESTION_URL = BASE_URL + '/api/questions';
+export const ADDQUESTION_URL = QUESTION_URL + '/add-question';
+export const REPLYQUESTION_URL = QUESTION_URL + '/reply-question';
+export const GETQUESTION_PRODUCT_URL = QUESTION_URL + '/get-questions/';
+export const GETQUESTION_USER_URL = QUESTION_URL + '/get-questions-from-user/';
 
 
 
