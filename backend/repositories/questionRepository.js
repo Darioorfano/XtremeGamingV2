@@ -113,6 +113,10 @@ const replyQuestion = async (idQuestion, idUsuario, content, name, photoUrl) => 
     }
 }
 
+const secondsToDate = (seconds) => {
+    return new Date(seconds * 1000); // Multiplica por 1000 para convertir segundos en milisegundos
+  }
+
 module.exports = {
     getQuestionsFromProduct,
     getQuestionsFromUser,
