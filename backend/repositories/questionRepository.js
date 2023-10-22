@@ -10,6 +10,7 @@ const getQuestionsFromProduct = async (idProduct) => {
 
         querySnapshot.forEach(doc => {
             let question = { 
+                idQuestion: doc.id,
                 name:doc.data().name,
                 content: doc.data().content,
                 fecha: secondsToDate(doc.data().fecha.seconds),
@@ -40,6 +41,7 @@ const getQuestionsFromUser = async (idUser) => {
 
         querySnapshot.forEach(doc => {
             let question = { 
+                idQuestion: doc.id,
                 name:doc.data().name,
                 content: doc.data().content,
                 fecha: secondsToDate(doc.data().fecha.seconds),
