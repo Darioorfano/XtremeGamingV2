@@ -78,9 +78,9 @@
       
         <div class="reviews">
           <div class="review" *ngFor="let consulta of questionDTO">
-            <div class="review-name mb-2">{{consulta.name }}</div>
+            <div class="review-name  mb-2">{{consulta.name }} <span class="text-secondary fecha-Consulta">{{consulta.fecha | date:'dd/MM/YYYY HH:mm'}}</span></div>
             <div class="review-comment">{{ consulta.content }}</div>
-            <div>{{consulta.fecha | date:'dd/MM/YYYY'}}</div>
+           
             <button class="btn btn-link text-end" (click)="responderConsulta(consulta)" *ngIf='!consulta.respondido'>Responder</button>
             <div *ngIf="consultaSeleccionada?.idQuestion === consulta.idQuestion">
               
@@ -89,11 +89,12 @@
                 <button class="btn btn-danger mt-3 enviar-respuesta" >Enviar respuesta</button>
               </form>
             </div>
-            <div  *ngIf="consulta.respondido"class="container-fluid admin-info">
+            <div  *ngIf="consulta.respondido" class="container-fluid admin-info mt-3">
               <img class="admin-photo" src="../../../assets/adminPhoto.png" alt="">
               <div class="respuesta-info">
+                <div class="review-name mb-2"> [ADMIN] {{consulta.respuesta.name}}<span class="respuesta-fecha text-end">{{ consulta.respuesta.fecha | date: 'dd/MM/yyyy HH:mm' }}</span>
+                </div>
                 <p class="respuesta-texto respuesta-mensaje">{{ consulta.respuesta.content }}</p>
-                <p class="respuesta-fecha">{{ consulta.respuesta.fecha | date: 'dd/MM/yyyy HH:mm' }}</p>
               </div>
             </div>
           </div>  
@@ -102,8 +103,8 @@
       
       <mat-tab label="RESEÑAS">
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Realizar Reseña</button>
-        <div class="reviews">
-          <div class="review" *ngFor="let resenia of reseniasDTO">
+        <div class="reviews d-flex flex-wrap justify-content-between ">
+          <div class="review col-lg-4 col-md-6 col-12" *ngFor="let resenia of reseniasDTO">
             <div class="review-name mb-2">{{ resenia.name }}</div>
             <div class="review-rating mb-3">
               <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">

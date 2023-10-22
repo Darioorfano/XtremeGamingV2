@@ -133,6 +133,10 @@
 .respuesta {
   position: relative;
 }
+.fecha-Consulta{
+  font-size: 0.8rem;
+  font-style: italic;
+}
 
 .respuesta-fecha {
   position: absolute;
