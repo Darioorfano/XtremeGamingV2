@@ -1,5 +1,6 @@
 const { auth } = require("../config/firebase");
 const { createUserWithEmailAndPassword, updateProfile, sendEmailVerification, signInWithEmailAndPassword } = require("firebase/auth");
+const { guardarUsuario } = require("../repositories/userRepository");
 
 const login = async (emailP, password) => {
   try {
@@ -55,6 +56,9 @@ const register = async (email, password, name) => {
     
     // Envio mail para confirmar el correo
     await sendEmailVerification(user)
+
+    //creo el usuario en la tabla y guardo el rol
+    await guardarUsuario(user.uid, name, 'cliente')
 
     return { code: 200, mensaje: "Usuario creado correctamente" };
   } catch (error) {

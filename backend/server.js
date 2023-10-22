@@ -30,6 +30,9 @@ app.use('/api/reviews',reviewRoutes);
 const cartRoutes = require('./routes/cartRoutes')
 app.use('/api/cart',cartRoutes);
 
+const questionRoutes = require('./routes/questionRoutes')
+app.use('/api/questions',questionRoutes);
+
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
