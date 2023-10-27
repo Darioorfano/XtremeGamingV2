@@ -31,8 +31,7 @@
       <h3>Inicio de sesión</h3>
         <input type="text" class="form-control" placeholder="Email" formControlName="email">
         <input type="password" class="form-control" placeholder="Contraseña" formControlName="password" />
-      <a href="#">Olvidaste tu contraseña?</a>
-      <button class="btn ingresar" (click)="validarUsuario();" [disabled]="loginForm.invalid">Ingresar</button>
+      <button class="btn ingresar mt-3" (click)="validarUsuario();" [disabled]="loginForm.invalid">Ingresar</button>
     </form>
   </div>
   <div class="overlay-container">

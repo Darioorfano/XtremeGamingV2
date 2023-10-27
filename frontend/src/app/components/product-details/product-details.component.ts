@@ -268,7 +268,6 @@ export class ProductDetailsComponent {
     if (modalBackdrop) {
       modalBackdrop.remove();
     }
-    
     this.obtenerConsulta();
     
    },

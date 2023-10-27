@@ -1,5 +1,5 @@
 <main class="container d-flex flex-wrap pb-5 pt-5">
-  <div class="col-lg-7 mt-2">
+  <div class="col-lg-7 mt-2 m-auto">
     <img src = {{producto.imagen}} alt="..." />
   </div>
   <div class="col-lg-5 text-center text-lg-start m-auto mt-3">
@@ -72,12 +72,12 @@
             <div class="form-group">
               <textarea name="content" formControlName="content" rows="4" placeholder="Escribe tu consulta aquí" class="form-control"></textarea>
             </div>
-            <button class="btn btn-danger enviar-consulta" type="submit">Enviar consulta</button>
+            <button class="btn btn-danger enviar-consulta" [disabled]="consultaForm.invalid" type="submit">Enviar consulta</button>
           </form>
         </div>
       
-        <div class="reviews">
-          <div class="review" *ngFor="let consulta of questionDTO">
+        <div class="reviews d-flex justify-content-between flex-wrap">
+          <div class="review" [(ngModel)]="questionDTO" *ngFor="let consulta of questionDTO">
             <div class="review-name  mb-2">{{consulta.name }} <span class="text-secondary fecha-Consulta">{{consulta.fecha | date:'dd/MM/YYYY HH:mm'}}</span></div>
             <div class="review-comment">{{ consulta.content }}</div>
            
@@ -89,7 +89,7 @@
                 <button class="btn btn-danger mt-3 enviar-respuesta" >Enviar respuesta</button>
               </form>
             </div>
-            <div  *ngIf="consulta.respondido" class="container-fluid admin-info mt-3">
+            <div *ngIf="consulta.respondido" class="container-fluid admin-info mt-3">
               <img class="admin-photo" src="../../../assets/adminPhoto.png" alt="">
               <div class="respuesta-info">
                 <div class="review-name mb-2"> [ADMIN] {{consulta.respuesta.name}}<span class="respuesta-fecha text-end">{{ consulta.respuesta.fecha | date: 'dd/MM/yyyy HH:mm' }}</span>

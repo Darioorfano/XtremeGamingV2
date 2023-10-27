@@ -1,7 +1,6 @@
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
     width: 6rem;
-    height: 500px;
 }
 
 @media screen and (min-width:991px){

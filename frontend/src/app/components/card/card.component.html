@@ -3,11 +3,10 @@
     <img src={{product.imagen}}
       class="card-img-top img-fluid" alt="...">
     <h5 class="card-title ">{{product.nombreProducto}}</h5>
-    <h4 class="card-text text-danger card-precio">${{product.precio}}</h4>
+    <h4 class="card-text mt-3 mb-3 text-danger card-precio">${{product.precio}}</h4>
     <div class="d-flex justify-content-around">
+    <a [routerLink]="'/producto/' + product.id" class="btn btn-ver">VER MÁS</a>
     <button class="btn botonUno btn-danger" (click)="agregarCarrito(product)">AGREGAR</button>
-
-    <a [routerLink]="'/producto/' + product.id" class="btn btn-ver">VER</a>
   </div>
   </div>
 </div>

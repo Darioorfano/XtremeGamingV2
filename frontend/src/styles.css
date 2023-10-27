@@ -2,6 +2,15 @@
 /* h4 {
   font:400 24px/30px Montserrat,sans-serif!important;
 } */
+.main{
+  min-height: 50vh;
+  display: flex;
+}
+.centrar{
+  justify-content: center;
+  align-items: center;
+}
+
 .precio{
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -11,6 +20,19 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 2rem;
+}
+.btn-ver{
+  color:#dc3545;
+  border:1px solid #dc3545;
+  border-radius:5px;
+ 
+}
+.btn-ver,.botonUno{
+  font-weight: bolder;
+}
+.btn-ver:hover{
+  background-color: #dc3545;
+  color:#fff;
 }
 body{
   background-color: #eee;
@@ -87,5 +109,10 @@ color:grey !important;
 @media  screen and (min-width:991px) {
   .mat-mdc-card-header-text{
     margin: 0;
+  }
+}
+@media (min-width:1024px){
+  .main{
+      min-height: 60vh;
   }
 }
