@@ -135,10 +135,8 @@ export class ProductDetailsComponent {
       return;
     }
     const {nombre,calificacion,comentario} = this.reseniaForm.controls
-    const usuario = this.userServices.obtenerUsuarioDeLaSesion();
-
+    
     const newReview: Resenia = {
-      idUsuario:usuario?.uid,
       nombre: nombre.value as string,
       calificacion: Number(calificacion.value),
       comentario: comentario.value as string,
