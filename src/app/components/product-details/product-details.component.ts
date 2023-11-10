@@ -114,7 +114,7 @@ export class ProductDetailsComponent {
    })
   }
  obtenerUsuario() {
-  //  this.user = await this.userServices.obtenerUsuarioDeLaSesion();
+    this.user = await this.userServices.obtenerUsuarioDeLaSesion();
     this.loggedIn = this.user != null;
   }
 
