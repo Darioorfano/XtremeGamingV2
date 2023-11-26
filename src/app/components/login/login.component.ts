@@ -5,6 +5,7 @@ import { DatosFormLogin } from 'src/app/models/datosFormLogin';
 import { DatosFormRegister } from 'src/app/models/datosFormRegister';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { ADMINS } from 'src/app/utility/admin';
 
 @Component({
   selector: 'app-login',
@@ -71,7 +72,14 @@ export class LoginComponent implements OnInit {
 
 }
 
-
+esAdmin(email:string){
+  for (const admin of ADMINS) {
+    if(admin == email){
+      return 'true';
+    }
+  }
+  return 'false';
+  }
   
   validarUsuario(){
     const {email,password} = this.loginForm.controls
@@ -84,6 +92,8 @@ export class LoginComponent implements OnInit {
       if(response.usuario.emailVerified ){
         const usuarioString = JSON.stringify(response.usuario);
       this.userServices.cargarDatosDeSesion(usuarioString);
+      const esAdmin = this.esAdmin(response.usuario.email)
+      localStorage.setItem('ESADMIN',esAdmin);
 
       Swal.fire("Inicio de sesión exitoso","Acepte para continuar",'success')
      .then((result) => {

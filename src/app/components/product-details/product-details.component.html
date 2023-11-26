@@ -81,7 +81,7 @@
             <div class="review-name  mb-2">{{consulta.name }} <span class="text-secondary fecha-Consulta">{{consulta.fecha | date:'dd/MM/YYYY HH:mm'}}</span></div>
             <div class="review-comment">{{ consulta.content }}</div>
            
-            <button class="btn btn-link text-end" (click)="responderConsulta(consulta)" *ngIf='!consulta.respondido'>Responder</button>
+            <button class="btn btn-link text-end" (click)="responderConsulta(consulta)" *ngIf='!consulta.respondido && isAdmin'>Responder</button>
             <div *ngIf="consultaSeleccionada?.idQuestion === consulta.idQuestion">
               
               <form [formGroup]="respuestaForm" *ngIf="mostrarFormularioRespuesta" (ngSubmit)="enviarRespuesta(consulta.idQuestion)" class="formulario-respuesta mt-2">

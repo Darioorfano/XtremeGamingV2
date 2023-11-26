@@ -98,6 +98,7 @@ export class ProductDetailsComponent {
     })
     this.obtenerResenia();
     this.obtenerConsulta();
+    this.isAdmin= localStorage.getItem('ESADMIN') == 'true'
   }
  
 
