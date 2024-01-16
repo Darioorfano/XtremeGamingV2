@@ -1,4 +1,4 @@
-const BASE_URL = 'https://backendxtremegaming-dev-hzae.1.us-1.fl0.io';
+const BASE_URL = 'https://backendxtremegaming.onrender.com/';
 export const PRODUCT_URL = BASE_URL + '/api/products';
 export const PRODUCT_ID_URL = PRODUCT_URL + '/product/'
 export const PRODUCT_SEARCH_URL = PRODUCT_URL + '/search/';
