@@ -1,4 +1,4 @@
-const BASE_URL = 'https://vps-3375425-x.dattaweb.com/'; 
+const BASE_URL = 'https://vps-3375425-x.dattaweb.com'; 
 export const PRODUCT_URL = BASE_URL + '/api/products';
 export const PRODUCT_ID_URL = PRODUCT_URL + '/product/'
 export const PRODUCT_SEARCH_URL = PRODUCT_URL + '/search/';
