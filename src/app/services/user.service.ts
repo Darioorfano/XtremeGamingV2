@@ -48,5 +48,6 @@ export class UserService {
 
   borrarSesion(){
     localStorage.removeItem('USUARIOLOGUEADO');
+    localStorage.removeItem('ESADMIN');
   }
 }
