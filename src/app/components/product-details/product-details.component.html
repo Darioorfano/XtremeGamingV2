@@ -67,6 +67,7 @@
       <mat-tab label="PREGUNTAS" class="border-bottom border-secondary">
         <div class="consulta-form mt-2">
           <h2 class="pt-2 pb-2">¿Tenés preguntas sobre este producto?</h2>
+          <div *ngIf="loggedIn; else notLoggedIn">
           <p>Escribi tu pregunta</p>
           <form [formGroup]="consultaForm"  class="formulario-consulta" (ngSubmit)="enviarConsulta()">
             <div class="form-group">
@@ -74,6 +75,12 @@
             </div>
             <button class="btn btn-danger enviar-consulta" [disabled]="consultaForm.invalid" type="submit">Enviar consulta</button>
           </form>
+        </div>
+        <ng-template #notLoggedIn>
+          <p>Debes estar logueado para realizar una consulta.</p>
+          <a class="btn btn-danger" routerLink="/login">Iniciar Sesion</a>
+        </ng-template>
+
         </div>
       
         <div class="reviews d-flex justify-content-between flex-wrap">
