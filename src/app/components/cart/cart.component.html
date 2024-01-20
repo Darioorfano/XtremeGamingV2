@@ -79,7 +79,14 @@
             <h5 class="text-uppercase">Total</h5>
             <h5>$ {{ getTotalCost() }}</h5>
           </div>
-          <a routerLink="/checkout" class="btn btn-danger d-block m-auto">Continuar</a>
+          <ng-container *ngIf="usuario; else usuarioNoLogueado">
+            <a routerLink="/checkout" class="btn btn-danger d-block m-auto">Continuar</a>
+          </ng-container>
+          <ng-template #usuarioNoLogueado>
+           <p>Para continuar con la compra inicie sesión</p>
+            <a routerLink="/login" class="btn btn-danger d-block m-auto">Iniciar Sesión</a>
+          </ng-template>
+          
         </div>
       </div>
     </div>

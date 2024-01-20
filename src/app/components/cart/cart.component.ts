@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrito } from 'src/app/models/carrito';
 import { CarritoItem } from 'src/app/models/carritoItem';
+import { Usuario } from 'src/app/models/usuario';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,12 +13,14 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent implements OnInit {
 
   carrito! : Carrito 
+  usuario:Usuario
 
-  constructor(public cartService: CartService){
+  constructor(public cartService: CartService,public userServices: UserService){
 
   }
 ngOnInit(): void {
   this.carrito = this.cartService.getCart();  
+  this.usuario=this.userServices.obtenerUsuarioDeLaSesion();
 }
 
   clearCart(){

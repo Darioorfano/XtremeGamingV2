@@ -6,6 +6,7 @@ import { DatosFormRegister } from 'src/app/models/datosFormRegister';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import { ADMINS } from 'src/app/utility/admin';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,6 @@ export class LoginComponent implements OnInit {
   emailInvalido: boolean = false;
   rightPanelClass : boolean = false;
   emailValidator  = new RegExp(/[A-Z0-9._+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
-  
   //Expresion regular que verifica que contenga al menos un numero, una mayuscula, caracter especial
   passwordValidator =new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/gm)
   
@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private userServices:UserService,
-    public router : Router
+    public router : Router,
+    private cartServices:CartService
   ) {}
 
   ngOnInit() {
@@ -98,7 +99,8 @@ esAdmin(email:string){
       Swal.fire("Inicio de sesión exitoso","Acepte para continuar",'success')
      .then((result) => {
       if(result.isConfirmed){
-        this.router.navigateByUrl('/');
+       if(this.cartServices.getQuantityItems() === 0 ) this.router.navigateByUrl('/');
+        else this.router.navigateByUrl('/checkout')
       }
      })
       }else{
